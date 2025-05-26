@@ -1,15 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import {
-  Users,
-  Server,
-  FileText,
-  Activity,
-  Home, // Dashboard icon
-} from 'lucide-react';
+import { NavLink, useLocation } from 'react-router-dom';
+import pop from '../assets/images/activity.png';
 import Logo from '../assets/images/vector.png';
+import homa from "../assets/images/another.png"; // blue home icon
+import server from "../assets/images/switch-horizontal.png";
+import repot from "../assets/images/bar-chart-2.png";
+import act from "../assets/images/mua.png";
+import acti from "../assets/images/settings.png";
 
 function Sidebar({ onLinkClick }) {
+  const location = useLocation();
+
   return (
     <div className="h-full flex flex-col p-4">
       {/* Logo and Title */}
@@ -28,80 +29,39 @@ function Sidebar({ onLinkClick }) {
 
       {/* Nav Links */}
       <nav className="flex flex-col gap-4">
+        {/* Dashboard (special style) */}
         <NavLink
           to="/dashboard"
           onClick={onLinkClick}
           className={({ isActive }) =>
             `flex items-center gap-3 pl-6 pr-3 py-2 rounded ${
-              isActive
-                ? 'bg-white text-blue-700 font-semibold'
-                : 'text-blue-700 hover:bg-blue-50'
+              isActive ? 'bg-white font-semibold' : 'hover:bg-blue-50'
             }`
           }
         >
-          <Home className="w-5 h-5" />
-          Dashboard
+          <img src={homa} alt="Dashboard Icon" className="w-5 h-5" />
+          <span className="text-blue-700">Dashboard</span>
         </NavLink>
 
-        <NavLink
-          to="/client-systems"
-          onClick={onLinkClick}
-          className={({ isActive }) =>
-            `flex items-center gap-3 pl-6 pr-3 py-2 rounded ${
-              isActive
-                ? 'bg-white text-blue-700 font-semibold'
-                : 'text-blue-700 hover:bg-blue-50'
-            }`
-          }
-        >
-          <Users className="w-5 h-5" />
-          Client Systems
-        </NavLink>
-
-        <NavLink
-          to="/gateway-configuration"
-          onClick={onLinkClick}
-          className={({ isActive }) =>
-            `flex items-center gap-3 pl-6 pr-3 py-2 rounded ${
-              isActive
-                ? 'bg-white text-blue-700 font-semibold'
-                : 'text-blue-700 hover:bg-blue-50'
-            }`
-          }
-        >
-          <Server className="w-5 h-5" />
-          Gateway Configuration
-        </NavLink>
-
-        <NavLink
-          to="/report-setting"
-          onClick={onLinkClick}
-          className={({ isActive }) =>
-            `flex items-center gap-3 pl-6 pr-3 py-2 rounded ${
-              isActive
-                ? 'bg-white text-blue-700 font-semibold'
-                : 'text-blue-700 hover:bg-blue-50'
-            }`
-          }
-        >
-          <FileText className="w-5 h-5" />
-          Report and Setting
-        </NavLink>
-
-        <NavLink
-          to="/activity-log"
-          onClick={onLinkClick}
-          className={({ isActive }) =>
-            `flex items-center gap-3 pl-6 pr-3 py-2 rounded ${
-              isActive
-                ? 'bg-white text-blue-700 font-semibold'
-                : 'text-blue-700 hover:bg-blue-50'
-            }`
-          }
-        >
-          <Activity className="w-5 h-5" />
-          Activity Log
-        </NavLink>
+        {/* All others - no white active background */}
+        {[
+          { to: "/client-systems", label: "Client Systems", icon: pop },
+          { to: "/gateway-configuration", label: "Gateway Configuration", icon: server },
+          { to: "/report-setting", label: "Report and Setting", icon: repot },
+          { to: "/activity-log", label: "Settings", icon: acti },
+          { to: "/activity-log", label: "Activity Log", icon: act },
+        ].map(({ to, label, icon }) => (
+          <NavLink
+            key={label}
+            to={to}
+            onClick={onLinkClick}
+            className="flex items-center gap-3 pl-6 pr-3 py-2 rounded hover:bg-blue-50"
+            // NOTE: no conditional styling for active state
+          >
+            <img src={icon} alt={`${label} Icon`} className="w-5 h-5" />
+            <span>{label}</span>
+          </NavLink>
+        ))}
       </nav>
     </div>
   );
