@@ -1,26 +1,24 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './Layout/Layout';
-import ChatPage from './Component/Pages/ChatPage';
-import ProfilePage from './Component/Pages/ProfilePage';
+import ClientSystem from './Component/Pages/ClientSystem';
+import ReportPage from './Component/Pages/ReportPage';
 import SettingsPage from './Component/Pages/SettingsPage';
-import LoginPage from './Component/Pages/LoginPage';
-import RegisterPage from './Component/Pages/RegisterPage';
-import DashboardPage from './Component/Pages/DashboardPage'; 
-import React from 'react';
+import ActivityLogPage from './Component/Pages/ActivityLogPage';
+import DashboardPage from './Component/Pages/DashboardPage';
+import GateWayConfigurationPage from './Component/Pages/GateWayConfigurationPage'
+
 
 function App() {
   return (
     <Routes>
-      
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-
-      
       <Route path="/" element={<Layout />}>
-        <Route index element={<DashboardPage />} /> 
-        <Route path="chat" element={<ChatPage />} />
-        <Route path="profile" element={<ProfilePage />} />
+        <Route index element={<DashboardPage />} />
+        <Route path="client-system" element={<ClientSystem />} />
+        <Route path="gateway-configuration" element={<GateWayConfigurationPage />} />
+        <Route path="report" element={<ReportPage />} />
         <Route path="settings" element={<SettingsPage />} />
+        <Route path="activity-log" element={<ActivityLogPage />} />
       </Route>
     </Routes>
   );
