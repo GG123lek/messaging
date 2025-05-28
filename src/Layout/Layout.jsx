@@ -16,7 +16,7 @@ function Layout() {
       </div>
 
       {/* Main content area */}
-      <div className="flex-1 flex flex-col bg-[#EBDFFC]">
+      <div className="flex-1 flex flex-col bg-[#FBFBFB]">
         {/* Top bar for mobile */}
         <div className="sm:hidden px-4 py-3 bg-white shadow-md flex items-center justify-between">
           <button
