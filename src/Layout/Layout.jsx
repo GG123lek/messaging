@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import Sidebar from "../Component/Sidebar";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
-
-  const isDashboard = location.pathname === "/" || location.pathname === "/dashboard";
 
   return (
     <div className="flex min-h-screen w-full overflow-hidden">
@@ -44,18 +41,8 @@ function Layout() {
           </button>
         </div>
 
-        {/* Dashboard header - full width, aligned with sidebar content */}
-        {isDashboard && (
-          <div
-            className="bg-white shadow-sm"
-            style={{ paddingLeft: 24, paddingRight: 24, height: 60, display: "flex", alignItems: "center" }}
-          >
-            <h1 className="text-xl font-semibold text-[#2292FC]">Dashboard</h1>
-          </div>
-        )}
-
-        {/* Page content - padding separate from header */}
-        <main className="flex-1 overflow-auto p-6">
+        {/* Page content area */}
+        <main className="flex-1 overflow-auto">
           <Outlet />
         </main>
       </div>
