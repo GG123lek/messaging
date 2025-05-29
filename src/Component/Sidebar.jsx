@@ -49,30 +49,20 @@ function Sidebar({ onLinkClick }) {
           onClick={onLinkClick}
           end
           className={({ isActive }) =>
-            `flex items-center gap-3 px-4 py-2 rounded ${
+            `flex items-center gap-3 px-4 py-2 rounded  ${
               isActive ? activeStyle : 'text-[#565869]'
             }`
           }
         >
-          {({ isActive }) => (
-            <span className="ml-6 flex items-center gap-3">
-              <img
-                src={homa}
-                alt="Dashboard Icon"
-                className="w-5 h-5"
-                style={{ filter: isActive ? 'none' : 'grayscale(100%)' }}
-              />
-              <span>Dashboard</span>
-            </span>
-          )}
+          <img src={homa} alt="Dashboard Icon" className="w-5 h-5" />
+          <span>Dashboard</span>
         </NavLink>
 
         {/* Client System Group */}
         <div className="relative">
           <div
             onClick={() => setClientOpen(!clientOpen)}
-            className={`flex items-center gap-3 px-4 py-2 rounded text-[#565869] text-[0.95rem] cursor-pointer`}
-          >
+ className={`flex items-center gap-3 px-4 py-2 rounded text-[#565869] text-[0.95rem] cursor-pointer`}    >
             <span className="absolute left-2">
               {clientOpen ? (
                 <FiMinus size={16} color="#565869" />
@@ -170,7 +160,7 @@ function Sidebar({ onLinkClick }) {
       </nav>
 
       {/* Log Out */}
-      <div className="mt-14 px-6 flex items-center justify-between gap-4 select-none cursor-default">
+      <div className="mt-10 px-6 flex items-center justify-between gap-4 select-none cursor-default">
         <span className="text-sm font-semibold text-[#2292FC]">Log Out</span>
         <div className="bg-[#2292FC] p-1 rounded-sm flex items-center justify-center w-6 h-6">
           <img src={logoutIcon} alt="Logout Icon" className="w-4 h-4" />

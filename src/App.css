@@ -1,1 +1,25 @@
 
+/* App.css */
+
+/* Example: Adjust StatCard width on very small screens */
+@media (max-width: 480px) {
+  .stat-card {
+    width: 100% !important; /* Override any fixed width */
+    height: auto !important; /* Let height adjust */
+    margin-bottom: 1rem;
+  }
+}
+
+/* Example: Change font size for DashboardPage title on small screens */
+@media (max-width: 640px) {
+  .dashboard-title {
+    font-size: 1.25rem; /* smaller than default */
+  }
+}
+
+/* Example: Hide a certain element on mobile */
+@media (max-width: 640px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}

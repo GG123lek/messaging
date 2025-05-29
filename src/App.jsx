@@ -14,6 +14,8 @@ import NewClientSystem from './Component/SubPages/NewClientSystem';
 import CoreBanking from './Component/SubPages/CoreBanking';
 import CMS from './Component/SubPages/Cms';
 import ERP from './Component/SubPages/Erp';
+import './App.css';
+
 
 function App() {
   return (
