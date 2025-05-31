@@ -95,40 +95,41 @@ export default function DashboardPage() {
 
       <div className="px-4 sm:px-6 max-w-7xl mx-auto">
         {/* Header text + date selector */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 gap-4">
+        <div className="flex flex-col sm:flex-row justify-between  items-start sm:items-center mt-6 gap-4">
           <div>
             <h1 className="text-black font-bold text-xl">Welcome Admin</h1>
             <p className="text-[#667085]">All general informations appear in the field</p>
           </div>
 
-          <div className="relative h-12 w-full sm:w-[300px] bg-white shadow rounded-lg border px-3">
-            <button
-              onClick={() => setShowCalendar(!showCalendar)}
-              className="flex items-center gap-2 h-full w-full text-sm text-black whitespace-nowrap"
-            >
-              <img
-                src={calest}
-                alt="Calendar"
-                className="w-4 h-4 text-gray-500"
+          <div className="relative h-10 w-[250px] bg-white shadow rounded-lg border border-none px-3">
+          <button
+            onClick={() => setShowCalendar(!showCalendar)}
+            className="flex items-center justify-center gap-2 h-full w-full text-sm text-black whitespace-nowrap"
+          >
+            <img
+              src={calest}
+              alt="Calendar"
+              className="w-4 h-4 text-gray-500"
+            />
+            <span>
+              {format(range[0].startDate, "MMM d, yyyy")} –{" "}
+              {format(range[0].endDate, "MMM d, yyyy")}
+            </span>
+          </button>
+          {showCalendar && (
+            <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg">
+              <DateRange
+                editableDateInputs={true}
+                onChange={(item) => setRange([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={range}
+                rangeColors={["#4F46E5"]}
+                className="rounded-md"
               />
-              <span>
-                {format(range[0].startDate, "MMM d, yyyy")} –{" "}
-                {format(range[0].endDate, "MMM d, yyyy")}
-              </span>
-            </button>
-            {showCalendar && (
-              <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg">
-                <DateRange
-                  editableDateInputs={true}
-                  onChange={(item) => setRange([item.selection])}
-                  moveRangeOnFirstSelection={false}
-                  ranges={range}
-                  rangeColors={["#4F46E5"]}
-                  className="rounded-md"
-                />
-              </div>
-            )}
-          </div>
+            </div>
+          )}
+        </div>
+
         </div>
 
         {/* Top 4 cards - touching with vertical borders */}
