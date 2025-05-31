@@ -11,6 +11,7 @@ import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import MonthlyMessageChart from "../MyChart/MonthlyMessageChart";
+import RecentNotificationsContainer from "../NotificationContainer/RecentNotificationContainer";
 
 export default function DashboardPage() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -165,7 +166,7 @@ export default function DashboardPage() {
                   <div className="flex flex-col gap-6 flex-1">
                   
 
-                  <div className="bg-white rounded-lg shadow-md p-4 min-h-[250px]">
+                  <div className="bg-white rounded-lg shadow-md p-4 w-full max-w-[769px] h-[465px] max-h-[509px] min-h-[400px]">
   {/* Top: Text + Date Picker */}
   <div className="flex justify-between items-start mb-4">
     <div className="space-y-1">
@@ -176,8 +177,6 @@ export default function DashboardPage() {
         Shows total messages pushed from various channels
       </p>
     </div>
-
-    
 
     {/* Date container */}
     <div
@@ -201,33 +200,32 @@ export default function DashboardPage() {
     </div>
   </div>
 
-  <div className="flex items-center gap-6 mb-4">
-    {[
-      { name: "SMS", color: "#58A8F3" },
-      { name: "Email", color: "#F5CA91" },
-      { name: "Whatsapp", color: "#91D5BA" },
-      { name: "USSD", color: "#F99BAB" },
-    ].map(({ name, color }) => (
-      <div key={name} className="flex items-center gap-2">
-        <span
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: color }}
-        ></span>
-        <span className="text-xs text-[#464F60] font-bold">{name}</span>
-      </div>
-    ))}
-  </div>
+              <div className="flex items-center gap-6 mb-4">
+                {[
+                  { name: "SMS", color: "#58A8F3" },
+                  { name: "Email", color: "#F5CA91" },
+                  { name: "Whatsapp", color: "#91D5BA" },
+                  { name: "USSD", color: "#F99BAB" },
+                ].map(({ name, color }) => (
+                  <div key={name} className="flex items-center gap-2">
+                    <span
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: color }}
+                    ></span>
+                    <span className="text-xs text-[#464F60] font-bold">{name}</span>
+                  </div>
+                ))}
+              </div>
 
-  {/* Chart aligned under content */}
-  <div className="w-full">
-    <MonthlyMessageChart />
-  </div>
-</div>
+           <div className="w-full h-[400px]">
+            <MonthlyMessageChart />
+          </div>
 
-
-            <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
-              <h3 className="font-semibold mb-2 text-gray-700">Chart 2 (Large)</h3>
-              {/* Apex Chart placeholder */}
+            </div>
+            <div className="">
+              <div>
+                <RecentNotificationsContainer/>
+              </div>
             </div>
           </div>
 

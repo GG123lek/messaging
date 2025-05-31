@@ -42,7 +42,7 @@ function Layout() {
         </div>
 
         {/* Page content area */}
-        <main className="flex-1 overflow-auto">
+        <main className="flex-1 overflow-auto min-h-[1350px]">
           <Outlet />
         </main>
       </div>

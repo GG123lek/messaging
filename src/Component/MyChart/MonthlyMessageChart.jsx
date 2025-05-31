@@ -19,8 +19,8 @@ const data = [
 
 export default function MonthlyMessageChart() {
   return (
-    <div className="w-full h-[160px] sm:h-[180px] pl-0">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="w-full h-full pl-0">
+      <ResponsiveContainer width="100%" height="85%">
         <BarChart
           data={data}
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
