@@ -101,21 +101,22 @@ export default function DashboardPage() {
             <p className="text-[#667085]">All general informations appear in the field</p>
           </div>
 
-          <div className="relative h-10 w-[250px] bg-white shadow rounded-lg border border-none px-3">
+                  <div
+          className="relative bg-white shadow rounded-lg border border-none px-3 inline-flex items-center"
+          style={{ height: "36px", borderRadius: "8px" }}
+        >
           <button
             onClick={() => setShowCalendar(!showCalendar)}
-            className="flex items-center justify-center gap-2 h-full w-full text-sm text-black whitespace-nowrap"
+            className="flex items-center gap-2 text-xs text-black whitespace-nowrap text-[#101828] font-bold justify-center h-full w-full"
           >
-            <img
-              src={calest}
-              alt="Calendar"
-              className="w-4 h-4 text-gray-500"
-            />
+            <span className="font-bold text-[#344054] ">Showing:</span>
+            <img src={calest} alt="Calendar" className="w-3 h-3 text-gray-500" />
             <span>
               {format(range[0].startDate, "MMM d, yyyy")} –{" "}
               {format(range[0].endDate, "MMM d, yyyy")}
             </span>
           </button>
+
           {showCalendar && (
             <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg">
               <DateRange
@@ -129,6 +130,7 @@ export default function DashboardPage() {
             </div>
           )}
         </div>
+
 
         </div>
 
@@ -156,14 +158,63 @@ export default function DashboardPage() {
         </div>
 
 
-        {/* Bottom chart containers */}
-        <div className="mt-8 flex flex-col lg:flex-row gap-6">
-          {/* Left side bigger charts */}
-          <div className="flex flex-col gap-6 flex-1">
-            <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
-              <h3 className="font-semibold mb-2 text-gray-700">Chart 1 (Large)</h3>
-              {/* Apex Chart placeholder */}
+                {/* Bottom chart containers */}
+                <div className="mt-8 flex flex-col lg:flex-row gap-6">
+                  {/* Left side bigger charts */}
+                  <div className="flex flex-col gap-6 flex-1">
+                  
+
+                  <div className="bg-white rounded-lg shadow-md p-4 min-h-[250px]">
+          <div className="flex justify-between items-center mb-3">
+            {/* Text block with small gap */}
+            <div className="space-y-0.5">
+              <h4 className="font-semibold text-[#101828] text-sm leading-tight">
+                Channel Delivery Analysis
+              </h4>
+              <p className="text-xs text-[#667085] leading-snug">
+                Shows total messages pushed from various channels
+              </p>
             </div>
+
+            {/* Date container that wraps content tightly */}
+            <div
+              className="bg-white shadow rounded-lg border border-none flex items-center px-3 inline-flex"
+              style={{
+                height: "32px",
+                borderRadius: "8px",
+                minWidth: "140px", // optional minimum width so it doesn’t shrink too small
+              }}
+            >
+              <button
+                onClick={() => setShowCalendar(!showCalendar)}
+                className="flex items-center gap-1 w-full h-full text-[#667085] text-xs  whitespace-nowrap justify-center"
+              >
+                <img src={calest} alt="Calendar" className="w-3 h-3 text-gray-500" />
+                <span>
+                  {format(range[0].startDate, "MMM d, yyyy")} –{" "}
+                  {format(range[0].endDate, "MMM d, yyyy")}
+                </span>
+              </button>
+              {showCalendar && (
+                <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg">
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={(item) => setRange([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={range}
+                    rangeColors={["#4F46E5"]}
+                    className="rounded-md"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Chart placeholder */}
+          <div>{/* Chart component here */}</div>
+        </div>
+
+
             <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
               <h3 className="font-semibold mb-2 text-gray-700">Chart 2 (Large)</h3>
               {/* Apex Chart placeholder */}
