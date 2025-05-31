@@ -13,6 +13,7 @@ import { DateRange } from "react-date-range";
 import MonthlyMessageChart from "../MyChart/MonthlyMessageChart";
 import RecentNotificationsContainer from "../NotificationContainer/RecentNotificationContainer";
 import WaterfallChart from "../MyChart/WaterFallChart";
+import SystemMonitor from "../System/SystemMonitor";
 
 export default function DashboardPage() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -272,8 +273,21 @@ export default function DashboardPage() {
     </div>
   </div>
             <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
-              <h3 className="font-semibold mb-2 text-gray-700">Chart 4 (Small)</h3>
-              {/* Apex Chart placeholder */}
+            <div className="flex justify-between items-start mb-4">
+      <div className="space-y-1 flex-1 pr-4">
+        <h4 className="font-bold text-[#101828] text-sm leading-tight">
+          Health System
+        </h4>
+        <p className="text-[15px] text-[#667085] leading-tight">
+        System health indicators
+        </p>
+      </div>
+
+     
+    </div>
+              <div>
+                <SystemMonitor/>
+              </div>
             </div>
           </div>
           
