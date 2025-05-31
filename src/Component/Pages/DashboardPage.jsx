@@ -10,6 +10,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
+import MonthlyMessageChart from "../MyChart/MonthlyMessageChart";
 
 export default function DashboardPage() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -165,54 +166,63 @@ export default function DashboardPage() {
                   
 
                   <div className="bg-white rounded-lg shadow-md p-4 min-h-[250px]">
-          <div className="flex justify-between items-center mb-3">
-            {/* Text block with small gap */}
-            <div className="space-y-0.5">
-              <h4 className="font-semibold text-[#101828] text-sm leading-tight">
-                Channel Delivery Analysis
-              </h4>
-              <p className="text-xs text-[#667085] leading-snug">
-                Shows total messages pushed from various channels
-              </p>
-            </div>
+  {/* Top: Text + Date Picker */}
+  <div className="flex justify-between items-start mb-4">
+    <div className="space-y-1">
+      <h4 className="font-semibold text-[#101828] text-sm leading-tight">
+        Channel Delivery Analysis
+      </h4>
+      <p className="text-xs text-[#667085] leading-snug">
+        Shows total messages pushed from various channels
+      </p>
+    </div>
 
-            {/* Date container that wraps content tightly */}
-            <div
-              className="bg-white shadow rounded-lg border border-none flex items-center px-3 inline-flex"
-              style={{
-                height: "32px",
-                borderRadius: "8px",
-                minWidth: "140px", // optional minimum width so it doesn’t shrink too small
-              }}
-            >
-              <button
-                onClick={() => setShowCalendar(!showCalendar)}
-                className="flex items-center gap-1 w-full h-full text-[#667085] text-xs  whitespace-nowrap justify-center"
-              >
-                <img src={calest} alt="Calendar" className="w-3 h-3 text-gray-500" />
-                <span>
-                  {format(range[0].startDate, "MMM d, yyyy")} –{" "}
-                  {format(range[0].endDate, "MMM d, yyyy")}
-                </span>
-              </button>
-              {showCalendar && (
-                <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg">
-                  <DateRange
-                    editableDateInputs={true}
-                    onChange={(item) => setRange([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={range}
-                    rangeColors={["#4F46E5"]}
-                    className="rounded-md"
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+    
 
-          {/* Chart placeholder */}
-          <div>{/* Chart component here */}</div>
-        </div>
+    {/* Date container */}
+    <div
+      className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-3"
+      style={{
+        height: "28px",
+        minWidth: "140px",
+        borderRadius: "8px",
+      }}
+    >
+      <button
+        onClick={() => setShowCalendar(!showCalendar)}
+        className="flex items-center gap-1 text-[#667085] text-xs whitespace-nowrap justify-center"
+      >
+        <img src={calest} alt="Calendar" className="w-3 h-3" />
+        <span>
+          {format(range[0].startDate, "MMM d, yyyy")} –{" "}
+          {format(range[0].endDate, "MMM d, yyyy")}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div className="flex items-center gap-6 mb-4">
+    {[
+      { name: "SMS", color: "#58A8F3" },
+      { name: "Email", color: "#F5CA91" },
+      { name: "Whatsapp", color: "#91D5BA" },
+      { name: "USSD", color: "#F99BAB" },
+    ].map(({ name, color }) => (
+      <div key={name} className="flex items-center gap-2">
+        <span
+          className="w-3 h-3 rounded-full"
+          style={{ backgroundColor: color }}
+        ></span>
+        <span className="text-xs text-[#464F60] font-bold">{name}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Chart aligned under content */}
+  <div className="w-full">
+    <MonthlyMessageChart />
+  </div>
+</div>
 
 
             <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
