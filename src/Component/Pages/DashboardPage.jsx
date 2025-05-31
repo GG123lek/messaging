@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import MonthlyMessageChart from "../MyChart/MonthlyMessageChart";
 import RecentNotificationsContainer from "../NotificationContainer/RecentNotificationContainer";
+import WaterfallChart from "../MyChart/WaterFallChart";
 
 export default function DashboardPage() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -168,37 +169,37 @@ export default function DashboardPage() {
 
                   <div className="bg-white rounded-lg shadow-md p-4 w-full max-w-[769px] h-[465px] max-h-[509px] min-h-[400px]">
   {/* Top: Text + Date Picker */}
-  <div className="flex justify-between items-start mb-4">
-    <div className="space-y-1">
-      <h4 className="font-semibold text-[#101828] text-sm leading-tight">
-        Channel Delivery Analysis
-      </h4>
-      <p className="text-xs text-[#667085] leading-snug">
-        Shows total messages pushed from various channels
-      </p>
-    </div>
+                <div className="flex justify-between items-start mb-4">
+                  <div className="space-y-1">
+                    <h4 className="font-semibold text-[#101828] text-sm leading-tight">
+                      Channel Delivery Analysis
+                    </h4>
+                    <p className="text-xs text-[#667085] leading-snug">
+                      Shows total messages pushed from various channels
+                    </p>
+                  </div>
 
-    {/* Date container */}
-    <div
-      className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-3"
-      style={{
-        height: "28px",
-        minWidth: "140px",
-        borderRadius: "8px",
-      }}
-    >
-      <button
-        onClick={() => setShowCalendar(!showCalendar)}
-        className="flex items-center gap-1 text-[#667085] text-xs whitespace-nowrap justify-center"
-      >
-        <img src={calest} alt="Calendar" className="w-3 h-3" />
-        <span>
-          {format(range[0].startDate, "MMM d, yyyy")} –{" "}
-          {format(range[0].endDate, "MMM d, yyyy")}
-        </span>
-      </button>
-    </div>
-  </div>
+                  {/* Date container */}
+                  <div
+                    className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-3"
+                    style={{
+                      height: "28px",
+                      minWidth: "140px",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <button
+                      onClick={() => setShowCalendar(!showCalendar)}
+                      className="flex items-center gap-1 text-[#667085] text-xs whitespace-nowrap justify-center"
+                    >
+                      <img src={calest} alt="Calendar" className="w-3 h-3" />
+                      <span>
+                        {format(range[0].startDate, "MMM d, yyyy")} –{" "}
+                        {format(range[0].endDate, "MMM d, yyyy")}
+                      </span>
+                    </button>
+                  </div>
+                </div>
 
               <div className="flex items-center gap-6 mb-4">
                 {[
@@ -231,15 +232,51 @@ export default function DashboardPage() {
 
           {/* Right side smaller charts */}
           <div className="flex flex-col gap-6 w-full lg:w-[35%]">
-            <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
-              <h3 className="font-semibold mb-2 text-gray-700">Chart 3 (Small)</h3>
-              {/* Apex Chart placeholder */}
-            </div>
+          <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">               
+    {/* Fixed header with smaller text and better spacing */}
+    <div className="flex justify-between items-start mb-4">
+      <div className="space-y-1 flex-1 pr-4">
+        <h4 className="font-bold text-[#101828] text-sm leading-tight">
+          Top 5 Clients
+        </h4>
+        <p className="text-[10px] text-[#667085] leading-tight">
+          Top 5 client Systems by notification volume
+        </p>
+      </div>
+
+      {/* Smaller date container */}
+      <div
+        className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-2"
+        style={{
+          height: "24px",
+          minWidth: "120px",
+          borderRadius: "6px",
+        }}
+      >
+        <button
+          onClick={() => setShowCalendar(!showCalendar)}
+          className="flex items-center gap-1 text-[#667085] text-[10px] whitespace-nowrap justify-center"
+        >
+          <img src={calest} alt="Calendar" className="w-2.5 h-2.5" />
+          <span>
+            {format(range[0].startDate, "MMM d, yyyy")} –{" "}
+            {format(range[0].endDate, "MMM d, yyyy")}
+          </span>
+        </button>
+      </div>
+    </div>
+
+    {/* Chart with better alignment */}
+    <div className="w-full -ml-1">             
+      <WaterfallChart/>           
+    </div>
+  </div>
             <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
               <h3 className="font-semibold mb-2 text-gray-700">Chart 4 (Small)</h3>
               {/* Apex Chart placeholder */}
             </div>
           </div>
+          
         </div>
       </div>
     </div>
