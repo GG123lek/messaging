@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 function ReportPage() {
   return (
-    <div>Report</div>
-  )
+    <div>
+     
+      <Outlet /> 
+      ahhahah
+    </div>
+  );
 }
 
-export default ReportPage
+export default ReportPage;
