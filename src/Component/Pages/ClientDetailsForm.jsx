@@ -1,5 +1,45 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import nige from '../../assets/images/flagis.png';
+
+const CustomSelect = ({ value, onChange, options, placeholder }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleSelect = (val) => {
+    onChange(val);
+    setOpen(false);
+  };
+
+  return (
+    <div className="relative w-full">
+      <div
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg cursor-pointer flex items-center justify-between text-gray-900 bg-white"
+        onClick={() => setOpen(!open)}
+        tabIndex={0}
+        onBlur={() => setOpen(false)}
+      >
+        <span className={value ? "" : "text-gray-500"}>
+          {options.find((opt) => opt.value === value)?.label || placeholder}
+        </span>
+        <ChevronDown className="w-5 h-5 text-gray-400" />
+      </div>
+
+      {open && (
+        <ul className="absolute left-0 right-0 z-20 mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-40 overflow-y-auto">
+          {options.map((option) => (
+            <li
+              key={option.value}
+              className="px-4 py-2 hover:bg-blue-600 hover:text-white cursor-pointer"
+              onMouseDown={() => handleSelect(option.value)}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 const ClientDetailForm = () => {
   const [formData, setFormData] = useState({
@@ -12,10 +52,11 @@ const ClientDetailForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCustomSelectChange = (name, value) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = () => {
@@ -86,7 +127,7 @@ const ClientDetailForm = () => {
               </label>
               <div className="flex">
                 <div className="flex items-center px-3 py-3 border border-r-0 border-gray-300 bg-gray-50 rounded-l-lg">
-                  <div className="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
+                  <img src={nige} alt='' className="w-4 h-4 rounded-full bg-green-500 mr-2"/>
                   <span className="text-gray-700 text-sm">+234</span>
                   <ChevronDown className="w-4 h-4 text-gray-400 ml-1" />
                 </div>
@@ -106,21 +147,17 @@ const ClientDetailForm = () => {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Contact System Type
               </label>
-              <div className="relative">
-                <select
-                  name="contactSystemType"
-                  value={formData.contactSystemType}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-500 bg-white cursor-pointer"
-                >
-                  <option value="">Select Contact System Type</option>
-                  <option value="email">Email</option>
-                  <option value="sms">SMS</option>
-                  <option value="phone">Phone</option>
-                  <option value="whatsapp">WhatsApp</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
-              </div>
+              <CustomSelect
+                value={formData.contactSystemType}
+                onChange={(val) => handleCustomSelectChange('contactSystemType', val)}
+                placeholder="Select Contact System Type"
+                options={[
+                  { label: 'Email', value: 'email' },
+                  { label: 'SMS', value: 'sms' },
+                  { label: 'Phone', value: 'phone' },
+                  { label: 'WhatsApp', value: 'whatsapp' }
+                ]}
+              />
             </div>
           </div>
 
@@ -129,22 +166,18 @@ const ClientDetailForm = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Intended Notification Channel
             </label>
-            <div className="relative">
-              <select
-                name="notificationChannel"
-                value={formData.notificationChannel}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-500 bg-white cursor-pointer"
-              >
-                <option value="">Select Notification Channel</option>
-                <option value="email">Email</option>
-                <option value="sms">SMS</option>
-                <option value="push">Push Notification</option>
-                <option value="whatsapp">WhatsApp</option>
-                <option value="slack">Slack</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
-            </div>
+            <CustomSelect
+              value={formData.notificationChannel}
+              onChange={(val) => handleCustomSelectChange('notificationChannel', val)}
+              placeholder="Select Notification Channel"
+              options={[
+                { label: 'Email', value: 'email' },
+                { label: 'SMS', value: 'sms' },
+                { label: 'Push Notification', value: 'push' },
+                { label: 'WhatsApp', value: 'whatsapp' },
+                { label: 'Slack', value: 'slack' }
+              ]}
+            />
           </div>
         </div>
 
