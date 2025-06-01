@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import mok from '../../assets/images/brach.png'
+import mok from '../../assets/images/brach.png';
 
 const BankClientsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,13 +44,13 @@ const BankClientsTable = () => {
     <div className="min-h-screen p-1">
       <div className="border border-gray-200 rounded-lg overflow-hidden">
         {/* Search & Filter */}
-        <div className="flex justify-between items-center p-4 bg-white border-b border-gray-200">
-          <div className="relative">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-white border-b border-gray-200 gap-3">
+          <div className="relative w-full sm:w-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
               placeholder="Search by users, action type etc."
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-96 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full sm:w-96 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
@@ -58,7 +58,7 @@ const BankClientsTable = () => {
               }}
             />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 whitespace-nowrap bg-white">
             <img src={mok} alt='' className="w-4 h-4" />
             Filter
           </button>
@@ -66,7 +66,7 @@ const BankClientsTable = () => {
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-[600px]">
             <thead className="bg-gray-100">
               <tr>
                 <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm">Client Name</th>
@@ -77,7 +77,7 @@ const BankClientsTable = () => {
               </tr>
             </thead>
             <tbody className="bg-white">
-            {currentClients.map((client) => (
+              {currentClients.map((client) => (
                 <tr key={client.id} className="border-b border-gray-100 hover:bg-gray-50">
                   <td className="py-4 px-4 bg-white">
                     <div className="flex items-center gap-3">
@@ -95,11 +95,11 @@ const BankClientsTable = () => {
                       <span className="text-gray-900 text-sm">{client.name}</span>
                     </div>
                   </td>
-                  <td className="py-4 px-4 text-gray-600 text-sm bg-white">{client.email}</td>
-                  <td className="py-4 px-4 text-gray-600 text-sm bg-white">{client.phone}</td>
-                  <td className="py-4 px-4 text-gray-600 text-sm bg-white">{client.dateAdded}</td>
+                  <td className="py-4 px-4 text-gray-600 text-sm bg-white break-words max-w-xs">{client.email}</td>
+                  <td className="py-4 px-4 text-gray-600 text-sm bg-white whitespace-nowrap">{client.phone}</td>
+                  <td className="py-4 px-4 text-gray-600 text-sm bg-white whitespace-nowrap">{client.dateAdded}</td>
                   <td className="py-4 px-4 bg-white">
-                    <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                    <button className="text-blue-600 hover:text-blue-800 text-sm font-medium whitespace-nowrap">
                       View Details
                     </button>
                   </td>
@@ -117,12 +117,12 @@ const BankClientsTable = () => {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-between items-center px-4 py-4 bg-white border-t border-gray-100">
-          <div className="text-gray-600 text-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-center px-4 py-4 bg-white border-t border-gray-100 gap-3">
+          <div className="text-gray-600 text-sm whitespace-nowrap">
             Showing {startEntry}-{endEntry} of {totalEntries} entries
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
+            <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="text-gray-600 text-sm">Rows per page:</span>
               <select
                 className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"

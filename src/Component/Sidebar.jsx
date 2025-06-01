@@ -78,7 +78,7 @@ function Sidebar({ onLinkClick }) {
         </NavLink>
 
         {/* Client (Only on Dashboard) */}
-        {location.pathname === '/' && (
+        {/* {location.pathname === '/' && (
           <NavLink
             to="/client-page"
             onClick={onLinkClick}
@@ -91,7 +91,36 @@ function Sidebar({ onLinkClick }) {
             <img src={userIcon} alt="Client Icon" className="w-5 h-5" />
             <span>Client</span>
           </NavLink>
-        )}
+        )} */}
+            {/* <NavLink
+      to="/client-page"
+      onClick={onLinkClick}
+      className={({ isActive }) =>
+        `flex items-center gap-3 px-4 py-2 rounded ${
+          isActive ? activeStyle : 'text-[#565869]'
+        }`
+      }
+    >
+      <img src={userIcon} alt="Client Icon" className="w-5 h-5" />
+      <span>Client</span>
+    </NavLink> */}
+    {/* Client Link: show on '/' or '/client-page' */}
+{['/', '/client-page'].includes(location.pathname) && (
+  <NavLink
+    to="/client-page"
+    onClick={onLinkClick}
+    className={({ isActive }) =>
+      `flex items-center gap-3 px-4 py-2 rounded ${
+        isActive ? activeStyle : 'text-[#565869]'
+      }`
+    }
+  >
+    <img src={userIcon} alt="Client Icon" className="w-5 h-5" />
+    <span>Client</span>
+  </NavLink>
+)}
+
+
 
         {/* Client Systems (Show on all /report/* pages) */}
         {location.pathname.startsWith('/report') && (
