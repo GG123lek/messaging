@@ -26,38 +26,42 @@ function ClientPage() {
           </div>
         }
       >
-        <div className="flex items-center space-x-4">
-          <div className="w-6 h-6 cursor-pointer">
-            <img
-              src={bellss}
-              alt="Notifications"
-              className="w-full h-full object-contain"
-            />
-          </div>
+      <div className="flex items-center">
+  <div className="w-6 h-6 cursor-pointer">
+    <img
+      src={bellss}
+      alt="Notifications"
+      className="w-full h-full object-contain"
+    />
+  </div>
 
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-            <img
-              src={avaso}
-              alt="Albert Afolabi"
-              className="w-full h-full object-cover"
-            />
-          </div>
+  {/* Vertical line separator with equal horizontal margin */}
+        <div className="h-10 border-l border-gray-300 mx-4"></div>
 
-          <div className="flex flex-col gap-1">
-            <h3 className="text-sm font-semibold text-gray-900 leading-tight">
-              Albert Afolabi
-            </h3>
-            <p className="text-xs text-gray-500">System Admin</p>
-          </div>
-
-          <div>
+        <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
             <img
-              src={chevs}
-              alt="Dropdown"
-              className="w-4 h-4 text-gray-400"
+            src={avaso}
+            alt="Albert Afolabi"
+            className="w-full h-full object-cover"
             />
-          </div>
         </div>
+
+            <div className="flex flex-col gap-1 ml-4">
+                <h3 className="text-sm font-semibold text-gray-900 leading-tight">
+                Albert Afolabi
+                </h3>
+                <p className="text-xs text-gray-500">System Admin</p>
+            </div>
+
+            <div className="ml-4">
+                <img
+                src={chevs}
+                alt="Dropdown"
+                className="w-4 h-4 text-gray-400"
+                />
+            </div>
+            </div>
+
       </PageHeader>
 
       <main className="p-6 max-w-7xl mx-auto">
