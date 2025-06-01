@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
 import calest from '../../assets/images/date.png'; // Make sure this path is correct
+import FirstClientDetailsCard from '../Pages/FirstClientDetailsCard';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -87,9 +88,9 @@ const ClientDetailPage = () => {
 
       {/* Content Boxes */}
       <div className="space-y-6">
-        <div className="bg-white shadow rounded-lg border p-6">
+        <div className="bg-white shadow rounded-lg border border-none p-6">
           {/* First Box Content Goes Here */}
-          <p className="text-sm text-gray-600">First content section...</p>
+          <FirstClientDetailsCard />
         </div>
 
         <div className="bg-white shadow rounded-lg border p-6">
