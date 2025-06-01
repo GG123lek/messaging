@@ -21,7 +21,7 @@ function ClientPage() {
           <div className="flex items-center gap-2 text-xl font-semibold text-gray-800">
             <img src={goops} alt="Client Icon" className="w-4 h-4" />
             <span className="text-gray-400">/</span>
-            <span className="text-[#2292FC]">Clients</span>
+            <span className="text-[#2292FC]">Clients System</span>
           </div>
         }
       >
