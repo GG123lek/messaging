@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import mok from '../../assets/images/brach.png';
+import { useNavigate } from 'react-router-dom';
 
 const BankClientsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const images = import.meta.glob('/src/assets/images/*.{png,jpg,jpeg}', { eager: true });
 
@@ -102,8 +104,14 @@ const BankClientsTable = () => {
                   <td className="py-4 px-4 text-gray-600 text-sm bg-white whitespace-nowrap">{client.phone}</td>
                   <td className="py-4 px-4 text-gray-600 text-sm bg-white whitespace-nowrap">{client.dateAdded}</td>
                   <td className="py-4 px-4 bg-white">
-                    <button className="text-blue-600 hover:text-blue-800 text-sm font-medium whitespace-nowrap">
+                    {/* <button className="text-blue-600 hover:text-blue-800 text-sm font-medium whitespace-nowrap">
                       View Details
+                    </button> */}
+                    <button
+                        onClick={() => navigate(`/client-page/details/${client.slug}`)}
+                         className="text-blue-600 hover:text-blue-800 text-sm font-medium whitespace-nowrap cursor-pointer"
+                        >
+                         View Details
                     </button>
                   </td>
                 </tr>

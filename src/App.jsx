@@ -9,6 +9,7 @@ import ReportPage from './Component/Pages/ReportPage';
 import SettingsPage from './Component/Pages/SettingsPage';
 import ActivityLogPage from './Component/Pages/ActivityLogPage';
 import ClientPage from './Component/Pages/ClientPage';
+import ClientDetailsPage from './Component/Pages/ClientDetailsPage'; // 👈 Add this at the top
 
 // Import the new nested page
 import CustomerForm from './Component/Pages/CustomerForm';
@@ -37,6 +38,7 @@ function App() {
         {/* Nested route for new-customer inside client-page */}
         <Route path="client-page" element={<ClientPage />}>
           <Route path="customer-form" element={<CustomerForm />} />
+          <Route path="details/:slug" element={<ClientDetailsPage />} />
         </Route>
 
         <Route path="client-system" element={<ClientSystem />} />

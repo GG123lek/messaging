@@ -12,7 +12,9 @@ import plus from '../../assets/images/whiteadd.png';
 function ClientPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isNewCustomer = location.pathname.endsWith('customer-form');
+
+  // This will detect if we're not on the main client-page (i.e. we're inside a nested route)
+  const isNestedRoute = location.pathname !== '/client-page';
 
   return (
     <div>
@@ -50,7 +52,8 @@ function ClientPage() {
       </PageHeader>
 
       <main className="p-6 max-w-7xl mx-auto">
-        {!isNewCustomer && (
+        {/* Show this only when not in a nested route like customer-form or details/:slug */}
+        {!isNestedRoute && (
           <>
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -74,7 +77,7 @@ function ClientPage() {
           </>
         )}
 
-        {/* Nested route content (CustomerForm) */}
+        {/* Nested route content (CustomerForm or ClientDetailsPage) */}
         <Outlet />
       </main>
     </div>
