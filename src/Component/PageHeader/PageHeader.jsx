@@ -1,23 +1,21 @@
 import React from "react";
 
 function PageHeader({ title, children }) {
-    return (
-      <div
-        className="bg-white shadow-sm"
-        style={{
-          paddingLeft: 24,
-          paddingRight: 24,
-          height: 60,
-          display: "flex",
-          alignItems: "center",
-          gap: 12, // Optional: better spacing
-          justifyContent: "space-between"
-        }}
-      >
-        <h1 className="text-xl font-semibold">{title}</h1>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div
+      className="bg-white shadow-sm flex items-center justify-between"
+      style={{
+        height: 60,
+        width: '100%',
+        paddingLeft: 0,
+        paddingRight: 0,
+        gap: 12,
+      }}
+    >
+      <h1 className="text-xl font-semibold pl-6">{title}</h1> {/* optional padding left here */}
+      <div className="pr-6">{children}</div> {/* optional padding right here */}
+    </div>
+  );
+}
 
-  export default PageHeader
+export default PageHeader;

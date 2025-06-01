@@ -50,7 +50,7 @@ function Sidebar({ onLinkClick }) {
   return (
     <div className="h-full flex flex-col bg-[#F0F0F0]">
       {/* Logo */}
-      <div className="flex items-center gap-2 mb-4 px-4 pt-4">
+      <div className="flex items-center gap-2 mb-4 px-4 pt-4 whitespace-nowrap">
         <img src={Logo} alt="Logo" className="w-6 h-6" />
         <span className="text-lg font-semibold">Messaging Platform</span>
       </div>

@@ -41,7 +41,7 @@ const BankClientsTable = () => {
   const currentClients = filteredClients.slice(startEntry - 1, endEntry);
 
   return (
-    <div className="min-h-screen p-1">
+    <div className="w-full max-w-full overflow-x-auto p-1">
       <div className="border border-gray-200 rounded-lg overflow-hidden">
         {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-white border-b border-gray-200 gap-3">
@@ -65,15 +65,18 @@ const BankClientsTable = () => {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[600px]">
+        <div className=" min-w-full overflow-x-auto">
+          <table
+            className="min-w-full table-auto text-sm text-left"
+            style={{ tableLayout: 'fixed' }}
+          >
             <thead className="bg-gray-100">
               <tr>
-                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm">Client Name</th>
-                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm">Official Email</th>
-                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm">Phone Number</th>
-                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm">Date Added</th>
-                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm">Action</th>
+                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm w-1/4">Client Name</th>
+                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm w-1/4">Official Email</th>
+                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm w-1/6">Phone Number</th>
+                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm w-1/6">Date Added</th>
+                <th className="text-left py-4 px-4 font-medium text-gray-500 text-sm w-1/6">Action</th>
               </tr>
             </thead>
             <tbody className="bg-white">

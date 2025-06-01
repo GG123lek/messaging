@@ -66,7 +66,9 @@ function ClientPage() {
           </button>
         </div>
 
-        <BankClientsTable />
+        <div className="w-full overflow-x-auto">
+         <BankClientsTable />
+       </div>
       </main>
     </div>
   );
