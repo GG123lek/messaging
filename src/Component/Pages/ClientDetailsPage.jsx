@@ -12,7 +12,6 @@ import MonthlyMessageDetailsChart from '../../Component/MyChart/MonthlyMessageDe
 import TabNavigation from '../Pages/TabNavigation';
 import NotificationHeaderSection from '../../Component/OtherPage/NotificationHeaderSection'
 import NotificationLegend from '../../Component/OtherPage/NotificationLegend'
-import ConfigureChannel from '../SubPages/ConfigureChannel';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -154,10 +153,9 @@ const ClientDetailPage = () => {
                     </div>
                 </>
                 )}
-                {/* {activeTab === 'Configure Channel' && (
+                {activeTab === 'Configure Channel' && (
                 <div className="text-sm text-gray-600">Configure Channel Content</div>
-                )} */}
-                {activeTab === 'Configure Channel' && <ConfigureChannel />}
+                )}
                 {activeTab === 'SMPP Profile' && (
                 <div className="text-sm text-gray-600">SMPP Profile Content</div>
                 )}

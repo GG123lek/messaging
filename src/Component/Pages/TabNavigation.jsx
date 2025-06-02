@@ -12,21 +12,27 @@ export default function TabNavigation({ activeTab, setActiveTab }) {
       {tabs.map((tab, index) => {
         const isActive = activeTab === tab.id;
 
-        const baseStyle = `px-4 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer ${
+        const baseStyle = `px-4 py-2 text-sm font-medium transition-colors duration-200 ${
           index < tabs.length - 1 ? 'border-r border-gray-300' : ''
         }`;
 
-        // Active tab has bg #E4E7EC, inactive white
-        const bgColor = isActive ? 'bg-[#E4E7EC]' : 'bg-white';
+        let tabStyle = '';
 
-        // Text color: dark for active, gray for inactive
-        const textColor = isActive ? 'text-[#1D2739]' : 'text-[#98A2B3]';
+        if (tab.id === 'Reports') {
+          tabStyle = isActive
+            ? 'bg-[#E4E7EC] text-[#1D2739]'
+            : 'bg-white text-[#98A2B3] hover:bg-gray-50';
+        } else {
+          tabStyle = isActive
+            ? 'bg-white text-[#1D2739]'
+            : 'bg-white text-[#98A2B3] hover:bg-gray-50';
+        }
 
         return (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`${baseStyle} ${bgColor} ${textColor}`}
+            className={`${baseStyle} ${tabStyle}`}
           >
             {tab.label}
           </button>
