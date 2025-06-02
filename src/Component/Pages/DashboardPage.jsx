@@ -25,6 +25,15 @@ export default function DashboardPage() {
     },
   ]);
 
+  const aprilToSeptData = [
+    { month: "Apr", bar1: 360, bar2: 350, bar3: 180, bar4: 190 },
+    { month: "May", bar1: 260, bar2: 250, bar3: 120, bar4: 125 },
+    { month: "Jun", bar1: 70, bar2: 370, bar3: 240, bar4: 250 },
+    { month: "Jul", bar1: 330, bar2: 360, bar3: 370, bar4: 120 },
+    { month: "Aug", bar1: 140, bar2: 300, bar3: 140, bar4: 260 },
+    { month: "Sept", bar1: 340, bar2: 360, bar3: 80, bar4: 70 },
+  ];
+
   const cards = [
     {
       title: "Total Client System",
@@ -223,7 +232,7 @@ export default function DashboardPage() {
               </div>
 
            <div className="w-full h-[400px]">
-            <MonthlyMessageChart />
+            <MonthlyMessageChart data={aprilToSeptData} yAxisDomain={[0, 400]}/>
           </div>
 
             </div>

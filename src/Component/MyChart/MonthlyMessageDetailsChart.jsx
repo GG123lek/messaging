@@ -8,10 +8,10 @@ import {
   CartesianGrid,
 } from "recharts";
 
-export default function MonthlyMessageChart({ data, yAxisDomain = [0, 400], containerHeight = '85%' }) {
+export default function MonthlyMessageDetailChart({ data, yAxisDomain = [0, 400] }) {
   return (
-    <div className="w-full h-full pl-0">
-      <ResponsiveContainer width="100%" height={containerHeight}>
+    <div className="w-full h-[300px]"> {/* Specific height just for this context */}
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
@@ -36,7 +36,7 @@ export default function MonthlyMessageChart({ data, yAxisDomain = [0, 400], cont
             axisLine={false}
             tickLine={false}
             tick={{ fontSize: 12, fill: "#464F60" }}
-            width={30} // reduce Y axis label width
+            width={30}
           />
           <Bar dataKey="bar1" fill="#0EA5E9" radius={[2, 2, 0, 0]} />
           <Bar dataKey="bar2" fill="#86EFAC" radius={[2, 2, 0, 0]} />

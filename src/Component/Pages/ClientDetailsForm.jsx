@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronDown, ArrowLeft } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import nige from '../../assets/images/flagis.png';
-import mast from '../../assets/images/mask.png'
+import mast from '../../assets/images/mask.png';
 
 const ClientDetailForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,7 @@ const ClientDetailForm = () => {
     contactSystemType: '',
     notificationChannel: ''
   });
+
   const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (e) => {
@@ -22,12 +23,10 @@ const ClientDetailForm = () => {
   };
 
   const handleSubmit = () => {
-    // You can add validation here before showing modal
     setShowModal(true);
   };
 
   const handleGoBack = () => {
-    // Replace with your navigation logic
     window.history.back();
   };
 
@@ -50,9 +49,7 @@ const ClientDetailForm = () => {
 
         {/* Form Fields */}
         <div className="space-y-6">
-          {/* Row 1 */}
           <div className="flex flex-wrap gap-6">
-            {/* Business Name */}
             <div className="flex-1 min-w-[280px]">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Business Name
@@ -67,7 +64,6 @@ const ClientDetailForm = () => {
               />
             </div>
 
-            {/* Official Email */}
             <div className="flex-1 min-w-[280px]">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Official Email Address
@@ -83,9 +79,7 @@ const ClientDetailForm = () => {
             </div>
           </div>
 
-          {/* Row 2 */}
           <div className="flex flex-wrap gap-6">
-            {/* Phone Number */}
             <div className="flex-1 min-w-[280px]">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Phone Number
@@ -107,7 +101,6 @@ const ClientDetailForm = () => {
               </div>
             </div>
 
-            {/* Contact System Type */}
             <div className="flex-1 min-w-[280px]">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Contact System Type
@@ -127,7 +120,6 @@ const ClientDetailForm = () => {
             </div>
           </div>
 
-          {/* Row 3 */}
           <div className="flex-1 min-w-full">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Intended Notification Channel
@@ -148,19 +140,17 @@ const ClientDetailForm = () => {
           </div>
         </div>
 
-        {/* Separator before buttons */}
+        {/* Footer Buttons */}
         <div className="border-t border-gray-300 mt-8 pt-6 flex justify-end space-x-4">
           <button
             onClick={handleGoBack}
             className="flex items-center px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer"
           >
-            {/* <ArrowLeft className="mr-2 w-4 h-4" /> */}
             Go Back
           </button>
           <button
             onClick={handleSubmit}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
-            transition-colors duration-200 font-medium cursor-pointer"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium cursor-pointer"
           >
             Submit
           </button>
@@ -169,25 +159,20 @@ const ClientDetailForm = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div
-            className="bg-white rounded-xl w-[400px] h-[395px] p-8 flex flex-col items-center justify-center text-center"
-            style={{ borderRadius: '10px' }}
-          >
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-8 w-[400px] text-center shadow-lg">
             <img
-              src={mast} // Replace with actual image path
+              src={mast}
               alt="Success"
-              className="mb-6 mx-auto"
-              style={{ maxWidth: '150px', height: 'auto' }}
+              className="mb-6 mx-auto w-[120px] h-auto"
             />
-            <h2 className="text-3xl font-bold mb-4">Successful !!</h2>
-            <p className="text-gray-700 mb-12 max-w-[400px]">
+            <h2 className="text-2xl font-bold mb-2">Successful !!</h2>
+            <p className="text-gray-700 mb-8">
               You have successfully added a new client system
             </p>
             <button
               onClick={handleClose}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
-              transition-colors font-medium cursor-pointer"
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
             >
               Close
             </button>
