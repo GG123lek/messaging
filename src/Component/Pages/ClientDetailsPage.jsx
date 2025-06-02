@@ -121,6 +121,24 @@ const ClientDetailPage = () => {
           <FirstClientDetailsCard />
         </div>
 
+        {/* Second Box with TabNavigation inside */}
+        {/* <div className="bg-white shadow rounded-lg border p-6">
+          <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+
+          <div className="mt-4">
+            {activeTab === 'Reports' && (
+              <div className="w-full h-[400px]">
+                <MonthlyMessageChart data={janToDecData} yAxisDomain={[0, 400]} />
+              </div>
+            )}
+            {activeTab === 'Configure Channel' && (
+              <div className="text-sm text-gray-600">Configure Channel Content</div>
+            )}
+            {activeTab === 'SMPP Profile' && (
+              <div className="text-sm text-gray-600">SMPP Profile Content</div>
+            )}
+          </div>
+        </div> */}
 
             {/* TabNavigation + Second Container */}
             <div className="space-y-2">
@@ -197,7 +215,7 @@ const ClientDetailPage = () => {
   </div>
 
   {/* Chart */}
-  <div className="mb-8">
+  <div >
   <DeliveryTrendChart />
   </div>
 

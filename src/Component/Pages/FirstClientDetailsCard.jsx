@@ -4,7 +4,7 @@ import ubaLogo from '../../assets/images/uba.png';
 import mastercardLogo from '../../assets/images/switch.png';
 import { Link } from 'react-router-dom';
 
-const FirstClientDetailsCard = () => {
+const FirstClientDetailsCard = ({ activeTab }) => {
   return (
     <div className="w-full max-w-[1152px] mx-auto space-y-4">
       {/* Top Section: UBA Info and Status */}
@@ -14,7 +14,9 @@ const FirstClientDetailsCard = () => {
           <img src={ubaLogo} alt="UBA Logo" className="w-14 h-14 object-contain" />
 
           <div>
-            <h2 className="text-base font-semibold text-gray-900">United Bank for Africa</h2>
+            <h2 className="text-base font-semibold text-gray-900">
+              {activeTab === 'Configure Channel' ? <div>CHANNEL TEXT</div> : activeTab === 'SMPP Profile' ? <div>PROFILE TEXT</div> : "United Bank for Africa"}
+            </h2>
             <span className="inline-block mt-1 bg-[#3388B1] text-white text-xs font-medium px-2 py-1 rounded">
               ID: HB74939300
             </span>
