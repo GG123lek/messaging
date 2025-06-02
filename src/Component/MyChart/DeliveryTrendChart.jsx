@@ -36,8 +36,8 @@ export default function DeliveryTrendChart() {
             tick={{ fontSize: 12, fill: '#6B7280' }}
           />
           <YAxis
-            domain={[0, 400]}
-            ticks={[0, 100, 200, 300, 400]}
+            domain={[0, 450]}
+            tickCount={6}
             axisLine={false}
             tickLine={false}
             tick={{ fontSize: 12, fill: '#6B7280' }}
