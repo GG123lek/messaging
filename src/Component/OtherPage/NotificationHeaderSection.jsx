@@ -1,4 +1,6 @@
 import { Filter, Calendar } from 'lucide-react';
+import breg from '../../assets/images/icas.png'
+import goat from '../../assets/images/butty.png'
 import React from 'react';
 
 const NotificationHeaderSection = () => {
@@ -13,11 +15,11 @@ const NotificationHeaderSection = () => {
       {/* Right Buttons */}
       <div className="flex gap-3">
         <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm text-[#344054] hover:bg-gray-50">
-          <Filter className="w-4 h-4" />
+          <img src={goat} alt='' className="w-4 h-4" />
           Filter
         </button>
         <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm text-[#344054] hover:bg-gray-50">
-          <Calendar className="w-4 h-4" />
+          <img src={breg} alt='' className="w-4 h-4" />
           Monthly
         </button>
       </div>

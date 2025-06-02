@@ -6,6 +6,8 @@ import { format } from 'date-fns';
 
 import calest from '../../assets/images/date.png';
 import mastercardLogo from '../../assets/images/switch.png';
+import wale from '../../assets/images/butty.png'
+import dayo from '../../assets/images/icas.png'
 
 import FirstClientDetailsCard from '../Pages/FirstClientDetailsCard';
 import MonthlyMessageDetailsChart from '../../Component/MyChart/MonthlyMessageDetailsChart';
@@ -15,6 +17,7 @@ import NotificationLegend from '../../Component/OtherPage/NotificationLegend'
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+import DeliveryTrendChart from '../MyChart/DeliveryTrendChart';
 
 const ClientDetailPage = () => {
   const navigate = useNavigate();
@@ -58,6 +61,11 @@ const ClientDetailPage = () => {
     { month: "Nov", bar1: 280, bar2: 250, bar3: 230, bar4: 210 },
     { month: "Dec", bar1: 290, bar2: 260, bar3: 240, bar4: 220 },
   ];
+
+  const [activeChannel, setActiveChannel] = useState('SMS');
+
+  const channels = ['SMS', 'Email', 'Whatsapp', 'USSD'];
+
 
   return (
     <div className="max-w-[1152px] w-full mx-auto">
@@ -164,9 +172,52 @@ const ClientDetailPage = () => {
 
 
         {/* Third Box */}
-        <div className="bg-white shadow rounded-lg border p-6">
-          <p className="text-sm text-gray-600">Third content section...</p>
-        </div>
+        <div className="bg-white shadow rounded-lg border border-none p-6">
+  {/* Header - vertically stacked */}
+  <div className="mb-6 space-y-2 flex justify-between">
+    <div>
+      <h2 className="text-xl font-semibold text-gray-900 mb-1">Delivery Trend Graph</h2>
+      <p className="text-sm text-gray-500">
+        Visualize delivery status trends over time (Success, Failed, Pending)
+      </p>
+    </div>
+
+    <div className="flex items-center space-x-4">
+      {/* Filter Button */}
+      <button className="flex items-center space-x-2 px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+      <img src={wale} alt='' className='w-4 h-4'/>
+        <span>Filter</span>
+      </button>
+
+      {/* Monthly Dropdown */}
+      <button className="flex items-center space-x-2 px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+       <img src={dayo} alt='' className='w-4 h-4'/>
+        <span>Monthly</span>
+      </button>
+    </div>
+  </div>
+
+  {/* Tabs */}
+  <div className="flex border border-now rounded-lg w-fit overflow-hidden mb-6">
+    {channels.map((channel, index) => (
+      <button
+        key={channel}
+        onClick={() => setActiveChannel(channel)}
+        className={`px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+          activeChannel === channel
+            ? 'text-[#1D2739] bg-[#E4E7EC]'
+            : 'text-gray-600 bg-white hover:bg-gray-50'
+        } ${index < channels.length - 1 ? 'border-r border-gray-300' : ''}`}
+      >
+        {channel}
+      </button>
+    ))}
+  </div>
+
+  {/* Chart */}
+  <DeliveryTrendChart />
+</div>
+
       </div>
     </div>
   );
