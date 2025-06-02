@@ -40,10 +40,10 @@ function HayzedDetailForm() {
         {/* Header */}
         <div className="mb-8 border-b border-gray-300 pb-4">
           <h1 className="text-xl font-semibold text-[#101828] mb-1">
-            Hayzed Global Details
+            Hayzhed Global Details
           </h1>
           <p className="text-sm text-gray-600">
-           Edit Hayzed Global Details
+           Edit Hayzhed Global Details
           </p>
         </div>
 
@@ -166,7 +166,7 @@ function HayzedDetailForm() {
                   />
                   <h2 className="text-2xl font-bold mb-2">Successful !!</h2>
                   <p className="text-gray-700 mb-8">
-                    You have successfully added a new client system
+                    You have successfully edited Hayzhed Global
                   </p>
                   <button
                     onClick={handleClose}

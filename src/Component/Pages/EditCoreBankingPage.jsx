@@ -41,7 +41,7 @@ const EditCoreBankingPage = () => {
                 </button>
       
                 <h1 className="text-2xl font-semibold text-[#101828]">
-                  Edit Hayzed Global
+                  Edit Hayzhed Global
                 </h1>
               </div>
       
