@@ -1,7 +1,8 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import ubaLogo from '../../assets/images/uba.png'; // Update this path if needed
-import mastercardLogo from '../../assets/images/switch.png'; // Update this path if needed
+import ubaLogo from '../../assets/images/uba.png';
+import mastercardLogo from '../../assets/images/switch.png';
+import { Link } from 'react-router-dom';
 
 const FirstClientDetailsCard = () => {
   return (
@@ -21,15 +22,14 @@ const FirstClientDetailsCard = () => {
         </div>
 
         {/* Right Side: Status */}
-                <div className="flex items-center gap-2">
-        <span className="text-sm text-[#909090] font-medium">System Status:</span>
-        <img
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-[#909090] font-medium">System Status:</span>
+          <img
             src={mastercardLogo}
             alt="MasterCard"
             className="w-10 h-10 object-contain self-center"
-        />
+          />
         </div>
-
       </div>
 
       {/* Divider */}
@@ -37,13 +37,13 @@ const FirstClientDetailsCard = () => {
 
       {/* Centered Edit Core Banking Link */}
       <div className="flex justify-center">
-        <a
-          href="#"
-          className="flex items-center text-[#3388B1] text-sm font-medium "
+        <Link
+          to="editcorebanking"  // relative path from current URL
+          className="flex items-center text-[#3388B1] text-sm font-medium"
         >
           Edit Core Banking
           <ArrowUpRight className="ml-1 w-4 h-4" />
-        </a>
+        </Link>
       </div>
     </div>
   );
