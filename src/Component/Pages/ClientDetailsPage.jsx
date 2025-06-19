@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronDown, Calendar, Phone, Filter } from 'lucide-react';
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
 
@@ -8,6 +8,7 @@ import calest from '../../assets/images/date.png';
 import mastercardLogo from '../../assets/images/switch.png';
 import wale from '../../assets/images/butty.png'
 import dayo from '../../assets/images/icas.png'
+import futty from '../../assets/images/butty.png'
 
 import FirstClientDetailsCard from '../Pages/FirstClientDetailsCard';
 import MonthlyMessageDetailsChart from '../../Component/MyChart/MonthlyMessageDetailsChart';
@@ -18,6 +19,9 @@ import NotificationLegend from '../../Component/OtherPage/NotificationLegend'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import DeliveryTrendChart from '../MyChart/DeliveryTrendChart';
+import SMSFilterForm from '../SubPages/SmsFilterForm';
+import SMSStatsCards from '../SubPages/SmsStatCards';
+import SmsTableOne from '../SubPages/SmsTableOne';
 
 const ClientDetailPage = () => {
   const navigate = useNavigate();
@@ -235,6 +239,92 @@ const ClientDetailPage = () => {
   </div>
 
 </div>
+
+        {/* Fourth Box */}
+        <div className="bg-white shadow rounded-lg border border-none p-6">
+          {/* SMS/Email Tabs */}
+          <div className="flex border border-gray-300 rounded-lg w-fit overflow-hidden mb-6">
+            <button className="px-4 py-2 text-sm font-medium text-[#1D2739] bg-[#E4E7EC] border-r border-gray-300">
+              SMS
+            </button>
+            <button className="px-4 py-2 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50">
+              Email
+            </button>
+          </div>
+          
+          {/* Border */}
+          <div className="border-b border-[#EAECF0] mb-6"></div>
+          
+          {/* SMS Logs Section */}
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold text-gray-900">SMS Logs</h2>
+            
+            <div className="flex items-center gap-3">
+              {/* All Users Accounts Dropdown */}
+              <div className="relative">
+                <select className="appearance-none bg-white border border-gray-300 rounded-lg px-3 py-2 pr-10 text-sm text-[#667085] focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[150px]">
+                  <option>All Users Accounts</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <ChevronDown className="w-4 h-4 text-gray-400" />
+                </div>
+              </div>
+              
+              {/* Select Date Range Button */}
+              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden h-10">
+                <div className="bg-green-600 px-3 py-4 flex items-center justify-center">
+                  <Calendar className="w-4 h-4 text-white" />
+                </div>
+                <input 
+                  type="text" 
+                  placeholder="Select Date Range" 
+                  className="px-3 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px] bg-white"
+                  readOnly
+                />
+              </div>
+              
+              {/* Enter mobile Number Input */}
+              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden h-10">
+                <div className="bg-blue-600 px-3 py-4 flex items-center justify-center">
+                  <Phone className="w-4 h-4 text-white" />
+                </div>
+                <input 
+                  type="text" 
+                  placeholder="Enter mobile Number" 
+                  className="px-3 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[160px] bg-white"
+                />
+              </div>
+              
+              {/* Filter Button */}
+              <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <img src={futty} alt='' className="w-4 h-4" />
+                <span>Filter</span>
+              </button>
+            </div>
+          </div>
+          
+          {/* Additional container content goes here */}
+          <div className="border-b-3 border-[#EAECF0] mb-6"></div>
+          <SMSFilterForm/>
+          <br/>
+          <div className="flex flex-col">
+        <label className="text-sm font-medium text-[#344054] mb-2">SMS Text</label>
+        <textarea 
+          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-600 placeholder-gray-400 focus:outline-none  focus:ring-2 focus:ring-blue-500 resize-none h-24"
+          placeholder="Enter phrase text to match"
+        />
+      </div>
+      <br/>
+      <div>
+        <SMSStatsCards/>
+      </div>
+      <br/>
+      <div className="-mx-6 overflow-x-auto pb-6">
+            <SmsTableOne />
+       </div>
+
+
+        </div>
 
       </div>
     </div>
