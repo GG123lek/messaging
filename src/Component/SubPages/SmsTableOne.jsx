@@ -1,4 +1,5 @@
 import React from 'react';
+import cantry from '../../assets/images/Table cell.png'
 
 const SmsTableOne = () => {
   const tableData = [
@@ -182,8 +183,15 @@ const SmsTableOne = () => {
               <td className="px-3 py-2">{row.sender}</td>
               <td className="px-3 py-2">{row.client}</td>
               <td className="px-3 py-2">{row.gateway}</td>
-              <td className="px-3 py-2">{row.channel}</td>
-              <td className="px-3 py-2">{row.country}</td>
+              {/* <td className="px-3 py-2">{row.channel}</td> */}
+                            <td className="px-3 py-2">{row.channel}</td>
+                <td className="px-3 py-2">
+                <img
+                    src={cantry}
+                    alt="Country"
+                    className="w-20 h-20  mx-auto"
+                />
+                </td>
               <td className="px-3 py-2">{row.operator}</td>
               <td className="px-3 py-2 whitespace-nowrap text-center">{row.smsCount}</td>
               <td className={`px-3 py-2 font-semibold whitespace-nowrap ${getStatusColor(row.dlrStatus)}`}>
@@ -197,15 +205,15 @@ const SmsTableOne = () => {
 
       {/* Pagination with spacing */}
       <div className="flex items-center justify-between mt-6 px-4 text-sm text-gray-600">
-        <div>Showing 1–10 of 60 entries</div>
+        <div className='text-[#687182]'>Showing 1–10 of 60 entries</div>
         <div className="flex items-center gap-2">
-          <label htmlFor="rowsPerPage">Rows per page:</label>
+          <label htmlFor="rowsPerPage" className='text-[#687182]'>Rows per page:</label>
           <select id="rowsPerPage" className="border rounded px-2 py-1">
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="60">60</option>
           </select>
-          <button className="px-2 py-1 border rounded text-gray-500" disabled>{'<'}</button>
+          <button className="px-2 py-1 border rounded text-gray-500 " disabled>{'<'}</button>
           <span className="px-2">1</span>
           <button className="px-2 py-1 border rounded">{'>'}</button>
         </div>
