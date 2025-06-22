@@ -11,7 +11,7 @@ const WaterfallChart = () => {
 
   // Responsive dimensions
   const chartWidth = 278;  // ← Increased from 607 to better fit the container
-  const chartHeight = 282; // ← Your specified height
+  const chartHeight = 355; // ← Your specified height
   const margin = { top: 20, right: 15, bottom: 35, left: 25 };
   const innerWidth = chartWidth - margin.left - margin.right;
   const innerHeight = chartHeight - margin.top - margin.bottom;

@@ -173,47 +173,46 @@ export default function DashboardPage() {
         ))}
         </div>
 
-
-                {/* Bottom chart containers */}
-                <div className="mt-8 flex flex-col lg:flex-row gap-6">
-                  {/* Left side bigger charts */}
-                  <div className="flex flex-col gap-6 flex-1">
-                  
-
-                  <div className="bg-white rounded-lg shadow-md p-4 w-full max-w-[769px] h-[465px] max-h-[509px] min-h-[400px]">
-  {/* Top: Text + Date Picker */}
-                <div className="flex justify-between items-start mb-4">
-                  <div className="space-y-1">
-                    <h4 className="font-semibold text-[#101828] text-sm leading-tight">
-                      Channel Delivery Analysis
-                    </h4>
-                    <p className="text-xs text-[#667085] leading-snug">
-                      Shows total messages pushed from various channels
-                    </p>
-                  </div>
-
-                  {/* Date container */}
-                  <div
-                    className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-3"
-                    style={{
-                      height: "28px",
-                      minWidth: "140px",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    <button
-                      onClick={() => setShowCalendar(!showCalendar)}
-                      className="flex items-center gap-1 text-[#667085] text-xs whitespace-nowrap justify-center"
-                    >
-                      <img src={calest} alt="Calendar" className="w-3 h-3" />
-                      <span>
-                        {format(range[0].startDate, "MMM d, yyyy")} –{" "}
-                        {format(range[0].endDate, "MMM d, yyyy")}
-                      </span>
-                    </button>
-                  </div>
+        {/* Bottom chart containers - Fixed layout structure */}
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left side charts - Takes 2 columns */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
+            {/* Channel Delivery Analysis Chart */}
+            <div className="bg-white rounded-lg shadow-md p-6 h-[465px]">
+              {/* Top: Text + Date Picker */}
+              <div className="flex justify-between items-start mb-4">
+                <div className="space-y-1">
+                  <h4 className="font-semibold text-[#101828] text-sm leading-tight">
+                    Channel Delivery Analysis
+                  </h4>
+                  <p className="text-xs text-[#667085] leading-snug">
+                    Shows total messages pushed from various channels
+                  </p>
                 </div>
 
+                {/* Date container */}
+                <div
+                  className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-3"
+                  style={{
+                    height: "28px",
+                    minWidth: "140px",
+                    borderRadius: "8px",
+                  }}
+                >
+                  <button
+                    onClick={() => setShowCalendar(!showCalendar)}
+                    className="flex items-center gap-1 text-[#667085] text-xs whitespace-nowrap justify-center"
+                  >
+                    <img src={calest} alt="Calendar" className="w-3 h-3" />
+                    <span>
+                      {format(range[0].startDate, "MMM d, yyyy")} –{" "}
+                      {format(range[0].endDate, "MMM d, yyyy")}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Legend */}
               <div className="flex items-center gap-6 mb-4">
                 {[
                   { name: "SMS", color: "#58A8F3" },
@@ -231,78 +230,79 @@ export default function DashboardPage() {
                 ))}
               </div>
 
-           <div className="w-full h-[400px]">
-            <MonthlyMessageChart data={aprilToSeptData} yAxisDomain={[0, 400]}/>
-          </div>
-
-            </div>
-            <div className="">
-              <div>
-                <RecentNotificationsContainer/>
+              {/* Chart */}
+              <div className="w-full h-[400px]">
+                <MonthlyMessageChart data={aprilToSeptData} yAxisDomain={[0, 400]}/>
               </div>
             </div>
+
+            {/* Recent Notifications Container */}
+            <div className="bg-white rounded-lg shadow-md">
+              <RecentNotificationsContainer/>
+            </div>
           </div>
 
-          {/* Right side smaller charts */}
-          <div className="flex flex-col gap-6 w-full lg:w-[35%]">
-          <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">               
-    {/* Fixed header with smaller text and better spacing */}
-    <div className="flex justify-between items-start mb-4">
-      <div className="space-y-1 flex-1 pr-4">
-        <h4 className="font-bold text-[#101828] text-sm leading-tight">
-          Top 5 Clients
-        </h4>
-        <p className="text-[10px] text-[#667085] leading-tight">
-          Top 5 client Systems by notification volume
-        </p>
-      </div>
+          {/* Right side charts - Takes 1 column, properly aligned */}
+          <div className="lg:col-span-1 flex flex-col gap-6">
+            {/* Top 5 Clients Container */}
+            <div className="bg-white rounded-lg shadow-md p-6 h-[465px] flex flex-col">               
+              {/* Header */}
+              <div className="flex justify-between items-start mb-4 flex-shrink-0">
+                <div className="space-y-1 flex-1 pr-4">
+                  <h4 className="font-bold text-[#101828] text-sm leading-tight">
+                    Top 5 Clients
+                  </h4>
+                  <p className="text-xs text-[#667085] leading-tight">
+                    Top 5 client Systems by notification volume
+                  </p>
+                </div>
 
-      {/* Smaller date container */}
-      <div
-        className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-2"
-        style={{
-          height: "24px",
-          minWidth: "120px",
-          borderRadius: "6px",
-        }}
-      >
-        <button
-          onClick={() => setShowCalendar(!showCalendar)}
-          className="flex items-center gap-1 text-[#667085] text-[10px] whitespace-nowrap justify-center"
-        >
-          <img src={calest} alt="Calendar" className="w-2.5 h-2.5" />
-          <span>
-            {format(range[0].startDate, "MMM d, yyyy")} –{" "}
-            {format(range[0].endDate, "MMM d, yyyy")}
-          </span>
-        </button>
-      </div>
-    </div>
+                {/* Date container */}
+                <div
+                  className="bg-white shadow rounded-lg border border-gray-200 flex items-center px-2 flex-shrink-0"
+                  style={{
+                    height: "24px",
+                    minWidth: "120px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <button
+                    onClick={() => setShowCalendar(!showCalendar)}
+                    className="flex items-center gap-1 text-[#667085] text-xs whitespace-nowrap justify-center"
+                  >
+                    <img src={calest} alt="Calendar" className="w-2.5 h-2.5" />
+                    <span className="text-xs">
+                      {format(range[0].startDate, "MMM d")} – {format(range[0].endDate, "MMM d")}
+                    </span>
+                  </button>
+                </div>
+              </div>
 
-    {/* Chart with better alignment */}
-    <div className="w-full -ml-1">             
-      <WaterfallChart/>           
-    </div>
-  </div>
-            <div className="bg-white rounded-lg shadow-md p-6 min-h-[250px]">
-            <div className="flex justify-between items-start mb-4">
-      <div className="space-y-1 flex-1 pr-4">
-        <h4 className="font-bold text-[#101828] text-sm leading-tight">
-          Health System
-        </h4>
-        <p className="text-[15px] text-[#667085] leading-tight">
-        System health indicators
-        </p>
-      </div>
+              {/* Chart with proper containment */}
+              <div className="flex-1 w-full overflow-hidden">             
+                <WaterfallChart/>           
+              </div>
+            </div>
 
-     
-    </div>
-              <div>
+            {/* Health System Container */}
+            <div className="bg-white rounded-lg shadow-md p-6 flex flex-col" style={{ height: "calc(100% - 465px - 1.5rem)" }}>
+              <div className="flex justify-between items-start mb-4 flex-shrink-0">
+                <div className="space-y-1 flex-1 pr-4">
+                  <h4 className="font-bold text-[#101828] text-sm leading-tight">
+                    Health System
+                  </h4>
+                  <p className="text-xs text-[#667085] leading-tight">
+                    System health indicators
+                  </p>
+                </div>
+              </div>
+              
+              {/* System Monitor with proper containment */}
+              <div className="flex-1 w-full overflow-hidden min-h-0">
                 <SystemMonitor/>
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
