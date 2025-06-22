@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import pop from '../assets/images/activity.png';
-import Logo from '../assets/images/vector.png';
+import Logo from '../assets/images/Vector.png';
 import homa from '../assets/images/another.png';
 import server from '../assets/images/switch-horizontal.png';
 import repot from '../assets/images/bar-chart-2.png';

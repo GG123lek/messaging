@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TabNavigation({ activeTab, setActiveTab }) {
+export default function TabNavigationTwo({ activeTab, setActiveTab }) {
   const tabs = [
     { id: 'Reports', label: 'Reports' },
     { id: 'Configure Channel', label: 'Configure Channel' },
@@ -8,7 +8,7 @@ export default function TabNavigation({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="flex border border-gray-300 rounded-lg overflow-hidden w-fit ">
+    <div className="flex border border-gray-300 rounded-lg overflow-hidden w-fit">
       {tabs.map((tab, index) => {
         const isActive = activeTab === tab.id;
 
@@ -16,17 +16,13 @@ export default function TabNavigation({ activeTab, setActiveTab }) {
           index < tabs.length - 1 ? 'border-r border-gray-300' : ''
         }`;
 
-        let tabStyle = '';
-
-        if (tab.id === 'Reports') {
-          tabStyle = isActive
+        const tabStyle = tab.id === 'Reports'
+          ? isActive
             ? 'bg-[#E4E7EC] text-[#1D2739]'
-            : 'bg-white text-[#98A2B3] hover:bg-gray-50';
-        } else {
-          tabStyle = isActive
+            : 'bg-white text-[#98A2B3] hover:bg-gray-50'
+          : isActive
             ? 'bg-white text-[#1D2739]'
             : 'bg-white text-[#98A2B3] hover:bg-gray-50';
-        }
 
         return (
           <button

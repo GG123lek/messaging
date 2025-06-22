@@ -85,7 +85,7 @@ const ClientDetailPage = () => {
         <div className="space-y-6 mt-6">
           {/* Render the entire page content for Reports */}
           <div className="space-y-2">
-            <div className="space-y-6 mt-6">
+            <div className="space-y-6 mt-6 ">
               <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
             <div className="bg-white shadow rounded-lg border border-none p-6">
@@ -141,7 +141,7 @@ const ClientDetailPage = () => {
 
       {activeTab === 'Configure Channel' && (
         <div className="space-y-6 mt-6">
-          <div className="space-y-6 mt-6">
+          <div className="space-y-2 mt-6">
             <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
           {/* Content area for Configure Channel - Only first container is retained above */}
@@ -156,19 +156,17 @@ const ClientDetailPage = () => {
             {/* Add your Configure Channel content here */}
             <div className="space-y-4">
               {/* Placeholder content - replace with actual Configure Channel components */}
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-500">
-                  Add your Configure Channel components and forms here...
-                </p>
+              <div className="p-4">
+               
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {activeTab === 'SMPP Profile' && (
+      {activeTab === 'System' && (
         <div className="space-y-6 mt-6">
-          <div className="space-y-6 mt-6">
+          <div className="space-y-2 mt-6">
             <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
           {/* Content area for SMPP Profile - Only first container is retained above */}
