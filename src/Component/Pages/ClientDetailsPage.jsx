@@ -10,6 +10,9 @@ import wale from '../../assets/images/butty.png'
 import dayo from '../../assets/images/icas.png'
 import futty from '../../assets/images/butty.png'
 
+import ToggleTags from '../../Component/SubPages/ToggleTags'
+import SMSFilterBar from '../SubPages/SmsFilterBar';
+
 import FirstClientDetailsCard from '../Pages/FirstClientDetailsCard';
 import MonthlyMessageDetailsChart from '../../Component/MyChart/MonthlyMessageDetailsChart';
 import TabNavigation from '../Pages/TabNavigation';
@@ -103,6 +106,16 @@ const ClientDetailPage = () => {
           </div>
 
           <div className="bg-white shadow rounded-lg border border-none p-6">
+            <div>
+              <ToggleTags/>
+            </div>
+
+            <div className="my-4">
+            <div className="border-t border-gray-300 w-full" />
+            </div>
+
+            <SMSFilterBar />
+
             <SMSFilterForm />
             <br />
             <div className="flex flex-col">
