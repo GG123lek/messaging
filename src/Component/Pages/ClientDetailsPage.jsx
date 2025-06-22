@@ -70,263 +70,115 @@ const ClientDetailPage = () => {
 
   const channels = ['SMS', 'Email', 'Whatsapp', 'USSD'];
 
-
   return (
     <div className="max-w-[1152px] w-full mx-auto">
-      {/* Header Section */}
-      <div className="flex justify-between items-start mb-6">
-        <div>
-          <button
-            onClick={() => navigate('/client-page')}
-            className="flex items-center text-[#2292FC] hover:text-[#1b7ed1] text-sm font-medium mb-2"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Go Back
-          </button>
-          <h1 className="text-xl font-semibold text-[#101828]">
-            {clientName || 'Client Not Found'}
-          </h1>
-        </div>
+      {/* First Container - Always visible (FirstClientDetailsCard) */}
+      <div className="bg-white shadow rounded-lg border-none p-6">
+        <FirstClientDetailsCard />
+      </div>
 
-        <div
-          className="relative shadow rounded-lg border-none px-3 inline-flex items-center"
-          style={{ height: '36px', borderRadius: '8px' }}
-        >
-          <button
-            onClick={() => setShowCalendar(!showCalendar)}
-            className="flex items-center gap-2 text-xs text-[#101828] font-bold justify-center h-full w-full"
-          >
-            <span className="font-bold text-[#344054]">Showing:</span>
-            <img src={calest} alt="Calendar" className="w-3 h-3" />
-            <span>
-              {format(range[0].startDate, 'MMM d, yyyy')} –{' '}
-              {format(range[0].endDate, 'MMM d, yyyy')}
-            </span>
-          </button>
+      {/* Conditional Rendering Based on Active Tab */}
+      {activeTab === 'Reports' && (
+        <div className="space-y-6 mt-6">
+          {/* Render the entire page content for Reports */}
+          <div className="space-y-2">
+            <div className="space-y-6 mt-6">
+              <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+            </div>
+            <div className="bg-white shadow rounded-lg border border-none p-6">
+              <NotificationHeaderSection />
+              <NotificationLegend />
+              <div className="w-full">
+                <MonthlyMessageDetailsChart
+                  data={janToDecData}
+                  yAxisDomain={[0, 400]}
+                  containerHeight="100%"
+                />
+              </div>
+            </div>
+          </div>
 
-          {showCalendar && (
-            <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg">
-              <DateRange
-                editableDateInputs={true}
-                onChange={(item) => setRange([item.selection])}
-                moveRangeOnFirstSelection={false}
-                ranges={range}
-                rangeColors={['#4F46E5']}
+          <div className="bg-white shadow rounded-lg border border-none p-6">
+            <DeliveryTrendChart />
+          </div>
+
+          <div className="bg-white shadow rounded-lg border border-none p-6">
+            <SMSFilterForm />
+            <br />
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-[#344054] mb-2">
+                SMS Text
+              </label>
+              <textarea
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none h-24"
+                placeholder="Enter phrase text to match"
               />
             </div>
-          )}
-        </div>
-      </div>
-
-      {/* Content Boxes */}
-      <div className="space-y-6">
-        {/* First Box */}
-        <div className="bg-white shadow rounded-lg border-none p-6">
-          <FirstClientDetailsCard />
-        </div>
-
-        {/* Second Box with TabNavigation inside */}
-        {/* <div className="bg-white shadow rounded-lg border p-6">
-          <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-
-          <div className="mt-4">
-            {activeTab === 'Reports' && (
-              <div className="w-full h-[400px]">
-                <MonthlyMessageChart data={janToDecData} yAxisDomain={[0, 400]} />
-              </div>
-            )}
-            {activeTab === 'Configure Channel' && (
-              <div className="text-sm text-gray-600">Configure Channel Content</div>
-            )}
-            {activeTab === 'SMPP Profile' && (
-              <div className="text-sm text-gray-600">SMPP Profile Content</div>
-            )}
+            <br />
+            <div>
+              <SMSStatsCards />
+            </div>
+            <br />
+            <div className="-mx-6 overflow-x-auto pb-6">
+              <SmsTableOne />
+            </div>
           </div>
-        </div> */}
+        </div>
+      )}
 
-            {/* TabNavigation + Second Container */}
-            <div className="space-y-2">
+      {activeTab === 'Configure Channel' && (
+        <div className="space-y-6 mt-6">
+          <div className="space-y-6 mt-6">
             <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-            
-            <div className="bg-white shadow rounded-lg border border-none p-6">
-                {/* {activeTab === 'Reports' && (
-                <div className="w-full h-[400px]">
-                    <MonthlyMessageChart data={janToDecData} yAxisDomain={[0, 400]} />
-                </div>
-                )} */}
-                                {activeTab === 'Reports' && (
-                <>
-                    <NotificationHeaderSection />
-                    <NotificationLegend />
-                    <div className="w-full ">
-                    {/* <MonthlyMessageChart data={janToDecData} yAxisDomain={[0, 400]} /> */}
-                    <MonthlyMessageDetailsChart data={janToDecData} yAxisDomain={[0, 400]} containerHeight="100%" />
-
-                    </div>
-                </>
-                )}
-                {activeTab === 'Configure Channel' && (
-                <div className="text-sm text-gray-600">Configure Channel Content</div>
-                )}
-                {activeTab === 'SMPP Profile' && (
-                <div className="text-sm text-gray-600">SMPP Profile Content</div>
-                )}
-            </div>
-            </div>
-
-
-        {/* Third Box */}
-        <div className="bg-white shadow rounded-lg border border-none p-6">
-  {/* Header - vertically stacked */}
-  <div className="mb-6 space-y-2 flex justify-between">
-    <div>
-      <h2 className="text-xl font-semibold text-gray-900 mb-1">Delivery Trend Graph</h2>
-      <p className="text-sm text-gray-500">
-        Visualize delivery status trends over time (Success, Failed, Pending)
-      </p>
-    </div>
-
-    <div className="flex items-center space-x-4">
-      {/* Filter Button */}
-      <button className="flex items-center space-x-2 px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
-      <img src={wale} alt='' className='w-4 h-4'/>
-        <span>Filter</span>
-      </button>
-
-      {/* Monthly Dropdown */}
-      <button className="flex items-center space-x-2 px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
-       <img src={dayo} alt='' className='w-4 h-4'/>
-        <span>Monthly</span>
-      </button>
-    </div>
-  </div>
-
-  {/* Tabs */}
-  <div className="flex border border-now rounded-lg w-fit overflow-hidden mb-6">
-    {channels.map((channel, index) => (
-      <button
-        key={channel}
-        onClick={() => setActiveChannel(channel)}
-        className={`px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-          activeChannel === channel
-            ? 'text-[#1D2739] bg-[#E4E7EC]'
-            : 'text-gray-600 bg-white hover:bg-gray-50'
-        } ${index < channels.length - 1 ? 'border-r border-gray-300' : ''}`}
-      >
-        {channel}
-      </button>
-    ))}
-  </div>
-
-  {/* Chart */}
-  <div >
-  <DeliveryTrendChart />
-  </div>
-
-  <div className="flex items-center justify-center space-x-6">
-    <div className="flex items-center space-x-2">
-      <div className="w-3 h-3 rounded-full bg-green-500"></div>
-      <span className="text-sm font-medium text-gray-700">Success</span>
-    </div>
-    <div className="flex items-center space-x-2">
-      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-      <span className="text-sm font-medium text-gray-700">Failed</span>
-    </div>
-    <div className="flex items-center space-x-2">
-      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-      <span className="text-sm font-medium text-gray-700">Pending</span>
-    </div>
-  </div>
-
-</div>
-
-        {/* Fourth Box */}
-        <div className="bg-white shadow rounded-lg border border-none p-6">
-          {/* SMS/Email Tabs */}
-          <div className="flex border border-gray-300 rounded-lg w-fit overflow-hidden mb-6">
-            <button className="px-4 py-2 text-sm font-medium text-[#1D2739] bg-[#E4E7EC] border-r border-gray-300">
-              SMS
-            </button>
-            <button className="px-4 py-2 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50">
-              Email
-            </button>
           </div>
-          
-          {/* Border */}
-          <div className="border-b border-[#EAECF0] mb-6"></div>
-          
-          {/* SMS Logs Section */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">SMS Logs</h2>
+          {/* Content area for Configure Channel - Only first container is retained above */}
+          <div className="bg-white shadow rounded-lg border-none p-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Configure Channel Settings
+            </h2>
+            <p className="text-sm text-gray-600 mb-6">
+              Configure your messaging channel settings and preferences.
+            </p>
             
-            <div className="flex items-center gap-3">
-              {/* All Users Accounts Dropdown */}
-              <div className="relative">
-                <select className="appearance-none bg-white border border-gray-300 rounded-lg px-3 py-2 pr-10 text-sm text-[#667085] focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[150px]">
-                  <option>All Users Accounts</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <ChevronDown className="w-4 h-4 text-gray-400" />
-                </div>
+            {/* Add your Configure Channel content here */}
+            <div className="space-y-4">
+              {/* Placeholder content - replace with actual Configure Channel components */}
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <p className="text-sm text-gray-500">
+                  Add your Configure Channel components and forms here...
+                </p>
               </div>
-              
-              {/* Select Date Range Button */}
-              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden h-10">
-                <div className="bg-green-600 px-3 py-4 flex items-center justify-center">
-                  <Calendar className="w-4 h-4 text-white" />
-                </div>
-                <input 
-                  type="text" 
-                  placeholder="Select Date Range" 
-                  className="px-3 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[140px] bg-white"
-                  readOnly
-                />
-              </div>
-              
-              {/* Enter mobile Number Input */}
-              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden h-10">
-                <div className="bg-blue-600 px-3 py-4 flex items-center justify-center">
-                  <Phone className="w-4 h-4 text-white" />
-                </div>
-                <input 
-                  type="text" 
-                  placeholder="Enter mobile Number" 
-                  className="px-3 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[160px] bg-white"
-                />
-              </div>
-              
-              {/* Filter Button */}
-              <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
-                <img src={futty} alt='' className="w-4 h-4" />
-                <span>Filter</span>
-              </button>
             </div>
           </div>
-          
-          {/* Additional container content goes here */}
-          <div className="border-b-3 border-[#EAECF0] mb-6"></div>
-          <SMSFilterForm/>
-          <br/>
-          <div className="flex flex-col">
-        <label className="text-sm font-medium text-[#344054] mb-2">SMS Text</label>
-        <textarea 
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-600 placeholder-gray-400 focus:outline-none  focus:ring-2 focus:ring-blue-500 resize-none h-24"
-          placeholder="Enter phrase text to match"
-        />
-      </div>
-      <br/>
-      <div>
-        <SMSStatsCards/>
-      </div>
-      <br/>
-      <div className="-mx-6 overflow-x-auto pb-6">
-            <SmsTableOne />
-       </div>
-
-
         </div>
+      )}
 
-      </div>
+      {activeTab === 'SMPP Profile' && (
+        <div className="space-y-6 mt-6">
+          <div className="space-y-6 mt-6">
+            <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+          </div>
+          {/* Content area for SMPP Profile - Only first container is retained above */}
+          <div className="bg-white shadow rounded-lg border-none p-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              SMPP Profile Configuration
+            </h2>
+            <p className="text-sm text-gray-600 mb-6">
+              Manage your SMPP (Short Message Peer-to-Peer) profile settings.
+            </p>
+            
+            {/* Add your SMPP Profile content here */}
+            <div className="space-y-4">
+              {/* Placeholder content - replace with actual SMPP Profile components */}
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <p className="text-sm text-gray-500">
+                  Add your SMPP Profile components and configurations here...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
