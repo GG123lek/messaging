@@ -7,14 +7,14 @@ function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen w-full overflow-hidden">
-      {/* Sidebar for desktop */}
-      <div className="hidden sm:block w-[286px] bg-[#F0F0F0]">
+    <div className="flex min-h-screen w-full">
+      {/* Fixed Sidebar for desktop */}
+      <div className="hidden sm:block fixed left-0 top-0 w-[286px] h-screen bg-[#F0F0F0] z-10 overflow-y-auto">
         <Sidebar onLinkClick={() => {}} />
       </div>
 
       {/* Main content area */}
-      <div className="flex-1 flex flex-col bg-[#FBFBFB] min-w-0">
+      <div className="flex-1 flex flex-col bg-[#FBFBFB] min-w-0 sm:ml-[286px]">
         {/* Mobile header with hamburger */}
         <div className="sm:hidden flex items-center bg-white p-3 shadow-md">
           <button
@@ -29,8 +29,8 @@ function Layout() {
           </div>
         </div>
 
-        {/* Main content with padding and scroll */}
-        <main className="flex-1 overflow-auto min-h-[1350px]">
+        {/* Main content - now scrolls naturally with browser scroll */}
+        <main className="flex-1 w-full">
           <Outlet />
         </main>
       </div>

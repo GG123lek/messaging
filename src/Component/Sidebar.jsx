@@ -61,7 +61,7 @@ function Sidebar({ onLinkClick }) {
         Main Menu
       </div>
 
-      <nav className="flex flex-col gap-2 px-2">
+      <nav className="flex flex-col gap-2 px-2 flex-1">
         {/* Dashboard */}
         <NavLink
           to="/"
@@ -77,8 +77,8 @@ function Sidebar({ onLinkClick }) {
           <span>Dashboard</span>
         </NavLink>
 
-        {/* Client (Only on Dashboard) */}
-        {/* {location.pathname === '/' && (
+        {/* Client Link: show on '/' or '/client-page' */}
+        {['/', '/client-page'].includes(location.pathname) && (
           <NavLink
             to="/client-page"
             onClick={onLinkClick}
@@ -91,36 +91,7 @@ function Sidebar({ onLinkClick }) {
             <img src={userIcon} alt="Client Icon" className="w-5 h-5" />
             <span>Client</span>
           </NavLink>
-        )} */}
-            {/* <NavLink
-      to="/client-page"
-      onClick={onLinkClick}
-      className={({ isActive }) =>
-        `flex items-center gap-3 px-4 py-2 rounded ${
-          isActive ? activeStyle : 'text-[#565869]'
-        }`
-      }
-    >
-      <img src={userIcon} alt="Client Icon" className="w-5 h-5" />
-      <span>Client</span>
-    </NavLink> */}
-    {/* Client Link: show on '/' or '/client-page' */}
-{['/', '/client-page'].includes(location.pathname) && (
-  <NavLink
-    to="/client-page"
-    onClick={onLinkClick}
-    className={({ isActive }) =>
-      `flex items-center gap-3 px-4 py-2 rounded ${
-        isActive ? activeStyle : 'text-[#565869]'
-      }`
-    }
-  >
-    <img src={userIcon} alt="Client Icon" className="w-5 h-5" />
-    <span>Client</span>
-  </NavLink>
-)}
-
-
+        )}
 
         {/* Client Systems (Show on all /report/* pages) */}
         {location.pathname.startsWith('/report') && (
@@ -252,11 +223,11 @@ function Sidebar({ onLinkClick }) {
       </nav>
 
       {/* Logout */}
-      <div className="mt-10 px-6 flex items-center justify-between gap-4 select-none cursor-default">
+      <div className="mt-auto mb-4 px-6 flex items-center justify-between gap-4 select-none cursor-default">
         <span className="text-sm font-semibold text-[#2292FC]">Log Out</span>
-            <div className="w-8 h-8 bg-[#2292FC] rounded flex items-center justify-center">
-        <img src={logoutIcon} alt="Logout Icon" className="w-5 h-5" />
-      </div>
+        <div className="w-8 h-8 bg-[#2292FC] rounded flex items-center justify-center">
+          <img src={logoutIcon} alt="Logout Icon" className="w-5 h-5" />
+        </div>
       </div>
     </div>
   );
