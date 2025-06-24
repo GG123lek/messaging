@@ -25,25 +25,97 @@ import DeliveryTrendChart from '../MyChart/DeliveryTrendChart';
 import SMSFilterForm from '../SubPages/SmsFilterForm';
 import SMSStatsCards from '../SubPages/SmsStatCards';
 import SmsTableOne from '../SubPages/SmsTableOne';
+import backArrowBlue from '../../assets/images/leftin.png';
 
 const ClientDetailPage = () => {
-  const navigate = useNavigate();
   const { slug } = useParams();
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('Reports');
 
-  const clientMap = {
-    uba: 'UNITED BANK FOR AFRICA',
-    firstbank: 'FIRST BANK',
-    wema: 'WEMA BANK',
-    ecobank: 'ECO BANK',
-    unionbank: 'UNION BANK',
-    stanbic: 'STANBIC IBTC BANK',
-    fidelity: 'FIDELITY BANK',
-    standard: 'STANDARD CHARTERED',
-    guaranty: 'GUARANTEE TRUST BANK',
+  // Import all images from assets
+  const images = import.meta.glob('/src/assets/images/*.{png,jpg,jpeg}', { eager: true });
+
+  const getImage = (slug) => {
+    const match = Object.entries(images).find(([path]) =>
+      path.toLowerCase().includes(`${slug.toLowerCase()}.`)
+    );
+    return match ? match[1].default : null;
   };
 
-  const clientName = clientMap[slug];
-  const [activeTab, setActiveTab] = useState('Reports');
+  // Client data mapping
+  const clientData = {
+    uba: {
+      name: 'United Bank for Africa',
+      slug: 'uba',
+      id: 'HB74939300',
+      email: 'help@ubaafrica.net',
+      phone: '0-1988910892'
+    },
+    firstbank: {
+      name: 'First Bank',
+      slug: 'firstbank',
+      id: 'HB74939301',
+      email: 'firstbank@gmail.com',
+      phone: '0-1988910892'
+    },
+    wema: {
+      name: 'Wema Bank',
+      slug: 'wema',
+      id: 'HB74939302',
+      email: 'wemabank@gmail.com',
+      phone: '0-1988910892'
+    },
+    ecobank: {
+      name: 'Eco Bank',
+      slug: 'ecobank',
+      id: 'HB74939303',
+      email: 'help@ecobank.net',
+      phone: '0-1988910892'
+    },
+    unionbank: {
+      name: 'Union Bank',
+      slug: 'unionbank',
+      id: 'HB74939304',
+      email: 'help@unionbank.net',
+      phone: '0-1988910892'
+    },
+    stanbic: {
+      name: 'Stanbic IBTC Bank',
+      slug: 'stanbic',
+      id: 'HB74939305',
+      email: 'help@ibtc.net',
+      phone: '0-1988910892'
+    },
+    fidelity: {
+      name: 'Fidelity Bank',
+      slug: 'fidelity',
+      id: 'HB74939306',
+      email: 'help@fidelitybank.net',
+      phone: '0-1988910892'
+    },
+    standard: {
+      name: 'Standard Chartered',
+      slug: 'standard',
+      id: 'HB74939307',
+      email: 'help@standardchartered.net',
+      phone: '0-1988910892'
+    },
+    guaranty: {
+      name: 'Guarantee Trust Bank',
+      slug: 'guaranty',
+      id: 'HB74939308',
+      email: 'help@gtb.net',
+      phone: '0-1988910892'
+    },
+  };
+
+  // Get current client data
+  const currentClient = clientData[slug];
+  const clientLogo = getImage(slug);
+
+  const handleGoBack = () => {
+    navigate('/client-page');
+  };
 
   const [showCalendar, setShowCalendar] = useState(false);
   const [range, setRange] = useState([
@@ -70,14 +142,51 @@ const ClientDetailPage = () => {
   ];
 
   const [activeChannel, setActiveChannel] = useState('SMS');
-
   const channels = ['SMS', 'Email', 'Whatsapp', 'USSD'];
+
+  // If client not found, show error
+  if (!currentClient) {
+    return (
+      <div className="max-w-[1152px] w-full mx-auto p-6">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold text-red-600 mb-4">Client Not Found</h1>
+          <button
+            onClick={handleGoBack}
+            className="flex items-center gap-2 text-[#2292FC] text-sm font-medium cursor-pointer mx-auto"
+          >
+            <img src={backArrowBlue} alt="Go Back" className="w-4 h-4" />
+            Go Back to Client List
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-[1152px] w-full mx-auto">
+      {/* Header with Go Back and Client Name */}
+      <div>
+        <button
+          onClick={handleGoBack}
+          className="flex items-center gap-2 text-[#2292FC] text-sm font-medium mb-1 cursor-pointer"
+        >
+          <img src={backArrowBlue} alt="Go Back" className="w-4 h-4" />
+          Go Back
+        </button>
+
+        <h1 className="text-2xl font-semibold text-[#101828]">
+          {currentClient.name}
+        </h1>
+      </div>
+      <br/>
+
       {/* First Container - Always visible (FirstClientDetailsCard) */}
       <div className="bg-white shadow rounded-lg border-none p-6">
-        <FirstClientDetailsCard />
+        <FirstClientDetailsCard 
+          clientData={currentClient}
+          clientLogo={clientLogo}
+          activeTab={activeTab}
+        />
       </div>
 
       {/* Conditional Rendering Based on Active Tab */}
@@ -145,12 +254,12 @@ const ClientDetailPage = () => {
             <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
           {/* Content area for Configure Channel - Only first container is retained above */}
-          <div className="bg-white shadow rounded-lg border-none p-6">
+           <div className="bg-white shadow rounded-lg border-none p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
               Configure Channel Settings
             </h2>
             <p className="text-sm text-gray-600 mb-6">
-              Configure your messaging channel settings and preferences.
+              Configure your messaging channel settings and preferences for {currentClient.name}.
             </p>
             
             {/* Add your Configure Channel content here */}
@@ -160,7 +269,7 @@ const ClientDetailPage = () => {
                
               </div>
             </div>
-          </div>
+          </div> 
         </div>
       )}
 
@@ -175,7 +284,7 @@ const ClientDetailPage = () => {
               SMPP Profile Configuration
             </h2>
             <p className="text-sm text-gray-600 mb-6">
-              Manage your SMPP (Short Message Peer-to-Peer) profile settings.
+              Manage your SMPP (Short Message Peer-to-Peer) profile settings for {currentClient.name}.
             </p>
             
             {/* Add your SMPP Profile content here */}
