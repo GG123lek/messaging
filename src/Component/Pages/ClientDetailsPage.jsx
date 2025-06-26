@@ -18,7 +18,7 @@ import MonthlyMessageDetailsChart from '../../Component/MyChart/MonthlyMessageDe
 import TabNavigation from '../Pages/TabNavigation';
 import NotificationHeaderSection from '../../Component/OtherPage/NotificationHeaderSection'
 import NotificationLegend from '../../Component/OtherPage/NotificationLegend'
-
+import ChannelConfigure from '../Pages/ChannelConfigure'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import DeliveryTrendChart from '../MyChart/DeliveryTrendChart';
@@ -255,13 +255,8 @@ const ClientDetailPage = () => {
           </div>
           {/* Content area for Configure Channel - Only first container is retained above */}
            <div className="bg-white shadow rounded-lg border-none p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">
-              Configure Channel Settings
-            </h2>
-            <p className="text-sm text-gray-600 mb-6">
-              Configure your messaging channel settings and preferences for {currentClient.name}.
-            </p>
             
+            <ChannelConfigure/>
             {/* Add your Configure Channel content here */}
             <div className="space-y-4">
               {/* Placeholder content - replace with actual Configure Channel components */}
