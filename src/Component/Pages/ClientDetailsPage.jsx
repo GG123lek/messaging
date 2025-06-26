@@ -189,24 +189,24 @@ const ClientDetailPage = () => {
         />
       </div>
 
+      {/* Tab Navigation - Always visible */}
+      <div className="mt-6 relative">
+        <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
+
       {/* Conditional Rendering Based on Active Tab */}
       {activeTab === 'Reports' && (
-        <div className="space-y-6 mt-6">
+        <div className="space-y-6 mt-2">
           {/* Render the entire page content for Reports */}
-          <div className="space-y-2">
-            <div className="space-y-6 mt-6 ">
-              <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-            </div>
-            <div className="bg-white shadow rounded-lg border border-none p-6">
-              <NotificationHeaderSection />
-              <NotificationLegend />
-              <div className="w-full">
-                <MonthlyMessageDetailsChart
-                  data={janToDecData}
-                  yAxisDomain={[0, 400]}
-                  containerHeight="100%"
-                />
-              </div>
+          <div className="bg-white shadow rounded-lg border border-none p-6">
+            <NotificationHeaderSection />
+            <NotificationLegend />
+            <div className="w-full">
+              <MonthlyMessageDetailsChart
+                data={janToDecData}
+                yAxisDomain={[0, 400]}
+                containerHeight="100%"
+              />
             </div>
           </div>
 
@@ -249,47 +249,34 @@ const ClientDetailPage = () => {
       )}
 
       {activeTab === 'Configure Channel' && (
-        <div className="space-y-6 mt-6">
-          <div className="space-y-2 mt-6">
-            <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-          </div>
-          {/* Content area for Configure Channel - Only first container is retained above */}
-           <div className="bg-white shadow rounded-lg border-none p-6">
-            
-            <ChannelConfigure/>
-            {/* Add your Configure Channel content here */}
-            <div className="space-y-4">
-              {/* Placeholder content - replace with actual Configure Channel components */}
-              <div className="p-4">
-               
-              </div>
+        <div className="bg-white shadow rounded-lg border-none p-6 mt-2 h-[788px]">
+          <ChannelConfigure/>
+          {/* Add your Configure Channel content here */}
+          <div className="space-y-4">
+            {/* Placeholder content - replace with actual Configure Channel components */}
+            <div className="p-4">
+             
             </div>
-          </div> 
+          </div>
         </div>
       )}
 
       {activeTab === 'System' && (
-        <div className="space-y-6 mt-6">
-          <div className="space-y-2 mt-6">
-            <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-          </div>
-          {/* Content area for SMPP Profile - Only first container is retained above */}
-          <div className="bg-white shadow rounded-lg border-none p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">
-              SMPP Profile Configuration
-            </h2>
-            <p className="text-sm text-gray-600 mb-6">
-              Manage your SMPP (Short Message Peer-to-Peer) profile settings for {currentClient.name}.
-            </p>
-            
-            {/* Add your SMPP Profile content here */}
-            <div className="space-y-4">
-              {/* Placeholder content - replace with actual SMPP Profile components */}
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-500">
-                  Add your SMPP Profile components and configurations here...
-                </p>
-              </div>
+        <div className="bg-white shadow rounded-lg border-none p-6 mt-2">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            SMPP Profile Configuration
+          </h2>
+          <p className="text-sm text-gray-600 mb-6">
+            Manage your SMPP (Short Message Peer-to-Peer) profile settings for {currentClient.name}.
+          </p>
+          
+          {/* Add your SMPP Profile content here */}
+          <div className="space-y-4">
+            {/* Placeholder content - replace with actual SMPP Profile components */}
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-500">
+                Add your SMPP Profile components and configurations here...
+              </p>
             </div>
           </div>
         </div>

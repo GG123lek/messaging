@@ -1,4 +1,5 @@
 import React from 'react';
+import maskit from '../../assets/images/maskfive.png'
 import { useState } from 'react';
 
 // Modal Component
@@ -76,7 +77,7 @@ function ChannelConfiguration() {
   return (
     <>
       {/* Header and Toggles Row */}
-      <div className="flex items-start gap-8 mb-6">
+      <div className="flex items-start gap-8 mb-6 ">
         {/* Left side - Header */}
         <div>
           <h2 className="text-lg font-semibold text-gray-900 mb-1">Configure Channel</h2>
@@ -90,7 +91,7 @@ function ChannelConfiguration() {
             <span className="text-gray-700 w-12">SMS</span>
             <button
               onClick={() => handleToggle('sms')}
-              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
+              className={`relative inline-flex h-5 w-9 items-center rounded-full cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
                 channels.sms ? 'bg-orange-600' : 'bg-gray-200'
               }`}
             >
@@ -107,7 +108,7 @@ function ChannelConfiguration() {
             <span className="text-gray-700 w-12">Email</span>
             <button
               onClick={() => handleToggle('email')}
-              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
+              className={`relative inline-flex h-5 w-9 items-center rounded-full cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
                 channels.email ? 'bg-orange-600' : 'bg-gray-200'
               }`}
             >
@@ -124,7 +125,7 @@ function ChannelConfiguration() {
             <span className="text-gray-700 w-12">USSD</span>
             <button
               onClick={() => handleToggle('ussd')}
-              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
+              className={`relative inline-flex h-5 w-9 items-center rounded-full cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
                 channels.ussd ? 'bg-orange-600' : 'bg-gray-200'
               }`}
             >
@@ -145,15 +146,15 @@ function ChannelConfiguration() {
       <div className="flex justify-end space-x-3">
         <button
           onClick={handleCancel}
-          className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors"
+          className="px-4 py-2 text-gray-700 bg-white border border-gray-300 cursor-pointer rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors"
         >
           Cancel
         </button>
         <button
-          onClick={handleSave}
-          className="px-4 py-2 text-white bg-[#2292FC] rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors"
-        >
-          Save Changes
+        onClick={handleSave}
+        className="px-4 py-2 text-white bg-[#2292FC] rounded-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors"
+         >
+        Save Changes
         </button>
       </div>
 
@@ -220,9 +221,10 @@ function ChannelConfiguration() {
         <div className="text-center space-y-4">
           <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-100">
             <div className="flex items-center justify-center h-12 w-12 rounded-full bg-white">
-              <svg className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {/* <svg className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
+              </svg> */}
+              <img src={maskit} alt=''/>
             </div>
           </div>
           
