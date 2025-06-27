@@ -1,51 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Plus, ExternalLink } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import SmppFormPopup from '../Pages/SmppFormPopup';
 
 const SystemDashboardOne = () => {
   const systems = [
     {
-      title: "UBA Core Banking",
-      apiKey: "WYH767822920280098",
-      action: "Configure SMTP",
-      actionType: "configure",
-      isConfigured: false
+      title: 'UBA Core Banking',
+      apiKey: 'WYH767822920280098',
+      action: 'Configure SMPP',
+      actionType: 'configure',
+      isConfigured: false,
     },
     {
-      title: "UBA ERP",
-      apiKey: "WYH767822920280098",
-      action: "Edit SMTP",
-      actionType: "edit",
-      isConfigured: true
+      title: 'UBA ERP',
+      apiKey: 'WYH767822920280098',
+      action: 'Edit SMPP',
+      actionType: 'edit',
+      isConfigured: true,
     },
     {
-      title: "UBA CMS",
-      apiKey: "WYH767822920280098",
-      action: "Edit SMTP",
-      actionType: "edit",
-      isConfigured: true
-    }
+      title: 'UBA CMS',
+      apiKey: 'WYH767822920280098',
+      action: 'Edit SMPP',
+      actionType: 'none',
+      isConfigured: true,
+    },
   ];
 
-  const handleAction = (system, actionType) => {
-    console.log(`${actionType} SMTP for ${system}`);
-    // Handle SMTP configuration/editing logic here
+  const [showSmppForm, setShowSmppForm] = useState(false);
+  const [formMode, setFormMode] = useState('configure'); // or 'edit'
+  const [formTitle, setFormTitle] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handleAction = (system) => {
+    if (system.actionType === 'none') return;
+
+    setFormMode(system.actionType);
+
+    if (system.actionType === 'configure') {
+      setFormTitle('New SMPP');
+      setSuccessMessage('You have successfully added a new SMPP');
+    } else if (system.actionType === 'edit') {
+      setFormTitle('Edit UBA core banking SMPP');
+      setSuccessMessage('You have successfully edited UBA core banking SMPP');
+    }
+
+    setShowSmppForm(true);
   };
 
-//   const handleNewSystem = () => {
-//     console.log("Add new system");
-//     // Handle new system creation logic here
-//   };
+  const closePopup = () => {
+    setShowSmppForm(false);
+  };
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { slug } = useParams();
 
-const { slug } = useParams(); 
-
-const handleNewSystemClick = () => {
-  navigate(`/client-page/details/${slug}/new-system`, {
-    state: { fromTab: 'System' }, // 👈 Pass tab info here
-  });
-};
+  const handleNewSystemClick = () => {
+    navigate(`/client-page/details/${slug}/new-system`, {
+      state: { fromTab: 'System' },
+    });
+  };
 
   return (
     <div className="h-full flex flex-col p-4">
@@ -60,7 +75,7 @@ const handleNewSystemClick = () => {
         </button>
       </div>
 
-      {/* Responsive Grid */}
+      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
         {systems.map((system, index) => (
           <div
@@ -68,24 +83,17 @@ const handleNewSystemClick = () => {
             className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow text-center w-full"
             style={{ minHeight: '220px' }}
           >
-            {/* System Title */}
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
-              {system.title}
-            </h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">{system.title}</h2>
 
-            {/* API Key */}
             <div className="mb-6">
-              <p className="text-sm text-gray-600 mb-6">
-                API Key : {system.apiKey}
-              </p>
+              <p className="text-sm text-gray-600 mb-6">API Key : {system.apiKey}</p>
               <div className="border-b border-gray-200"></div>
             </div>
 
-            {/* Action Button */}
             <div className="flex justify-center">
               <button
-                onClick={() => handleAction(system.title, system.actionType)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                onClick={() => handleAction(system)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer font-medium transition-colors ${
                   system.isConfigured
                     ? 'text-blue-600 hover:text-blue-700 hover:bg-blue-50'
                     : 'text-blue-600 hover:text-blue-700 hover:bg-blue-50'
@@ -107,6 +115,16 @@ const handleNewSystemClick = () => {
           </div>
         ))}
       </div>
+
+      {/* Form Modal */}
+      {showSmppForm && (
+        <SmppFormPopup
+          onClose={closePopup}
+          mode={formMode}
+          title={formTitle}
+          successMessage={successMessage}
+        />
+      )}
     </div>
   );
 };
