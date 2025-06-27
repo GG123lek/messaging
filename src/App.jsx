@@ -9,10 +9,8 @@ import ReportPage from './Component/Pages/ReportPage';
 import SettingsPage from './Component/Pages/SettingsPage';
 import ActivityLogPage from './Component/Pages/ActivityLogPage';
 import ClientPage from './Component/Pages/ClientPage';
-import ClientDetailsPage from './Component/Pages/ClientDetailsPage'; // 👈 Add this at the top
+import ClientDetailsPage from './Component/Pages/ClientDetailsPage';
 import EditCoreBankingPage from './Component/Pages/EditCoreBankingPage';
-
-// Import the new nested page
 import CustomerForm from './Component/Pages/CustomerForm';
 
 // Client System sub-routes
@@ -27,6 +25,9 @@ import Sms from './Component/SubPages/Sms';
 import Ussd from './Component/SubPages/Ussd';
 import Watsapp from './Component/SubPages/Watsapp';
 
+// ✅ New pages
+import SystemDashboardOne from './Component/Pages/SystemDashboardOne';
+import NewSystemForm from './Component/Pages/NewSystemForm'; // NEW PAGE
 
 import './App.css';
 
@@ -34,26 +35,34 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        {/* Dashboard home page */}
         <Route index element={<DashboardPage />} />
 
-            {/* Nested route for new-customer inside client-page */}
-            <Route path="client-page" element={<ClientPage />}>
-      <Route path="customer-form" element={<CustomerForm />} />
-      <Route path="details/:slug" element={<ClientDetailsPage />} />
-      <Route path="details/:slug/editcorebanking" element={<EditCoreBankingPage />} /> {/* ✅ Add this */}
-    </Route>
+        {/* Client section with nested routes */}
+        <Route path="client-page" element={<ClientPage />}>
+          <Route path="customer-form" element={<CustomerForm />} />
+          <Route path="details/:slug" element={<ClientDetailsPage />} />
+          <Route path="details/:slug/editcorebanking" element={<EditCoreBankingPage />} />
+        </Route>
 
-        <Route path="client-system" element={<ClientSystem />} />
+        {/* Client system + new dashboard page + new system form */}
+        <Route path="client-system">
+          <Route index element={<ClientSystem />} />
+          <Route path="system-dashboard-one" element={<SystemDashboardOne />} />
+        </Route>
+
+        {/* 🔹 New empty form route */}
+        <Route path="/client-page/details/:slug/new-system" element={<NewSystemForm />} />
+
+        {/* Additional routes */}
         <Route path="new-client-system" element={<NewClientSystem />} />
 
-        {/* Client System routes */}
         <Route path="report" element={<ReportPage />}>
           <Route path="core-banking" element={<CoreBanking />} />
           <Route path="cms" element={<CMS />} />
           <Route path="erp" element={<ERP />} />
         </Route>
 
-        {/* Gateway config routes */}
         <Route path="gateway-configuration" element={<GateWayConfigurationPage />} />
         <Route path="gateway-configuration/sms" element={<Sms />} />
         <Route path="gateway-configuration/email" element={<Email />} />

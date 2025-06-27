@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import PageHeader from '../PageHeader/PageHeader';
 import BankClientsTable from '../ClientTable/BankClientTable';
@@ -13,8 +13,23 @@ function ClientPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // This will detect if we're not on the main client-page (i.e. we're inside a nested route)
   const isNestedRoute = location.pathname !== '/client-page';
+
+  // ✅ Read tab from URL
+  const getTabFromUrl = () => {
+    const params = new URLSearchParams(location.search);
+    return params.get('tab') || 'Reports';
+  };
+
+  const [lastViewedTab, setLastViewedTab] = useState(getTabFromUrl());
+
+  // ✅ Keep in sync when URL changes (like from back button)
+  useEffect(() => {
+    const tab = getTabFromUrl();
+    if (tab !== lastViewedTab) {
+      setLastViewedTab(tab);
+    }
+  }, [location.search]);
 
   return (
     <div>
@@ -52,7 +67,6 @@ function ClientPage() {
       </PageHeader>
 
       <main className="p-6 max-w-7xl mx-auto">
-        {/* Show this only when not in a nested route like customer-form or details/:slug */}
         {!isNestedRoute && (
           <>
             <div className="flex items-center justify-between mb-6">
@@ -73,11 +87,11 @@ function ClientPage() {
               </button>
             </div>
 
-            <BankClientsTable />
+            {/* ✅ Pass lastViewedTab to BankClientsTable (or use it however needed) */}
+            <BankClientsTable lastViewedTab={lastViewedTab} />
           </>
         )}
 
-        {/* Nested route content (CustomerForm or ClientDetailsPage) */}
         <Outlet />
       </main>
     </div>
