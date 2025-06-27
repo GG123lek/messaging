@@ -159,7 +159,7 @@ const ClientDetailForm = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-transparent flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-8 w-[400px] text-center shadow-lg">
             <img
               src={mast}
