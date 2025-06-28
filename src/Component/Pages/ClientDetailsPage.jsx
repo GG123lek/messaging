@@ -51,17 +51,82 @@ const ClientDetailPage = () => {
       email: 'help@ubaafrica.net',
       phone: '0-1988910892'
     },
-    // ...other clients
+    firstbank: {
+      name: 'First Bank',
+      slug: 'firstbank',
+      id: 'HB74939301',
+      email: 'firstbank@gmail.com',
+      phone: '0-1988910892'
+    },
+    wema: {
+      name: 'Wema Bank',
+      slug: 'wema',
+      id: 'HB74939302',
+      email: 'wemabank@gmail.com',
+      phone: '0-1988910892'
+    },
+    ecobank: {
+      name: 'Eco Bank',
+      slug: 'ecobank',
+      id: 'HB74939303',
+      email: 'help@ecobank.net',
+      phone: '0-1988910892'
+    },
+    unionbank: {
+      name: 'Union Bank',
+      slug: 'unionbank',
+      id: 'HB74939304',
+      email: 'help@unionbank.net',
+      phone: '0-1988910892'
+    },
+    stanbic: {
+      name: 'Stanbic IBTC Bank',
+      slug: 'stanbic',
+      id: 'HB74939305',
+      email: 'help@ibtc.net',
+      phone: '0-1988910892'
+    },
+    fidelity: {
+      name: 'Fidelity Bank',
+      slug: 'fidelity',
+      id: 'HB74939306',
+      email: 'help@fidelitybank.net',
+      phone: '0-1988910892'
+    },
+    standard: {
+      name: 'Standard Chartered',
+      slug: 'standard',
+      id: 'HB74939307',
+      email: 'help@standardchartered.net',
+      phone: '0-1988910892'
+    },
+    guaranty: {
+      name: 'Guarantee Trust Bank',
+      slug: 'guaranty',
+      id: 'HB74939308',
+      email: 'help@gtb.net',
+      phone: '0-1988910892'
+    }
   };
-
+  
   const currentClient = clientData[slug];
   const clientLogo = getImage(slug);
 
   const janToDecData = [
     { month: "Jan", bar1: 180, bar2: 150, bar3: 120, bar4: 100 },
     { month: "Feb", bar1: 200, bar2: 170, bar3: 130, bar4: 110 },
-    // ...months continued
+    { month: "Mar", bar1: 220, bar2: 190, bar3: 140, bar4: 120 },
+    { month: "Apr", bar1: 210, bar2: 180, bar3: 135, bar4: 115 },
+    { month: "May", bar1: 250, bar2: 200, bar3: 145, bar4: 125 },
+    { month: "Jun", bar1: 230, bar2: 210, bar3: 155, bar4: 130 },
+    { month: "Jul", bar1: 260, bar2: 220, bar3: 160, bar4: 140 },
+    { month: "Aug", bar1: 240, bar2: 205, bar3: 150, bar4: 125 },
+    { month: "Sep", bar1: 270, bar2: 230, bar3: 165, bar4: 145 },
+    { month: "Oct", bar1: 280, bar2: 240, bar3: 175, bar4: 150 },
+    { month: "Nov", bar1: 300, bar2: 250, bar3: 180, bar4: 160 },
+    { month: "Dec", bar1: 320, bar2: 270, bar3: 190, bar4: 170 }
   ];
+  
 
   if (!currentClient) {
     return (
@@ -127,29 +192,6 @@ const ClientDetailPage = () => {
 
           <div className="bg-white shadow rounded-lg border border-none p-6">
             <ToggleTags />
-            <div className="my-4">
-              <div className="border-t border-gray-300 w-full" />
-            </div>
-            <SMSFilterBar />
-            <SMSFilterForm />
-
-            <div className="flex flex-col mt-4">
-              <label className="text-sm font-medium text-[#344054] mb-2">
-                SMS Text
-              </label>
-              <textarea
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none h-24"
-                placeholder="Enter phrase text to match"
-              />
-            </div>
-
-            <div className="mt-4">
-              <SMSStatsCards />
-            </div>
-
-            <div className="-mx-6 overflow-x-auto pb-6 mt-4">
-              <SmsTableOne />
-            </div>
           </div>
         </div>
       )}
