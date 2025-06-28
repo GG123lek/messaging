@@ -4,7 +4,13 @@ import maskit from '../../assets/images/maskfive.png';
 const SmppFormPopup = ({ onClose, mode = 'configure', title = '', successMessage = '' }) => {
   const [isFormOpen, setIsFormOpen] = useState(true);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [ipTags, setIpTags] = useState(['90.0.0.98', '102.0.0.67']);
+  const [ipTags, setIpTags] = useState([
+    '90.9.0.98',
+    '102.0.0.67',
+    '90.9.0.98',
+    '102.0.0.67',
+    '90.9.0.98',
+  ]);
   const [ipInput, setIpInput] = useState('');
 
   const handleSubmit = (e) => {
@@ -49,19 +55,12 @@ const SmppFormPopup = ({ onClose, mode = 'configure', title = '', successMessage
           <div className="bg-white w-[600px] p-6 rounded-lg shadow-lg">
             {/* Header */}
             <div className="mb-4 pb-4 border-b border-gray-200">
-              {/* <h2 className="text-base font-medium text-gray-900 mb-1">
-                {mode === 'edit' ? 'Edit Smpp' : 'New SMPP'}
-              </h2>
-              <p className="text-xs text-gray-500">
-                {mode === 'edit' ? title : 'Configure SMPP Profile'}
-              </p> */}
-                            <h2 className="text-base font-medium text-gray-900 mb-1">
+              <h2 className="text-base font-medium text-gray-900 mb-1">
                 {mode === 'edit' ? 'Edit SMPP' : 'New SMPP'}
               </h2>
               <p className="text-xs text-gray-500">
                 {mode === 'edit' ? 'Edit UBA core banking SMPP' : 'Configure SMPP Profile'}
               </p>
-
             </div>
 
             <div className="space-y-4">
@@ -161,15 +160,16 @@ const SmppFormPopup = ({ onClose, mode = 'configure', title = '', successMessage
                       {ipTags.map((ip, index) => (
                         <span
                           key={index}
-                          className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-gray-100 text-gray-700 rounded text-[10px] border"
+                          className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-gray-100 text-gray-700 rounded border-none text-[10px] border"
                         >
                           {ip}
                           <button
-                            onClick={() => removeIpTag(index)}
-                            className="text-gray-500 hover:text-gray-700 ml-1 text-xs leading-none"
-                          >
-                            ×
-                          </button>
+                          onClick={() => removeIpTag(index)}
+                          className="ml-1 px-1 py-0 text-xs text-gray-600 bg-white border border-gray-300 shadow-sm 
+                          rounded-sm"
+                        >
+                          ×
+                        </button>
                         </span>
                       ))}
                     </div>
