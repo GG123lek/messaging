@@ -41,10 +41,10 @@ function Sidebar({ onLinkClick }) {
   ];
 
   const gatewayLinks = [
-    { to: '/gateway-configuration/sms', label: 'SMS', dotColor: '#A569BD' },
-    { to: '/gateway-configuration/email', label: 'Email', dotColor: '#48C9B0' },
-    { to: '/gateway-configuration/ussd', label: 'USSD', dotColor: '#F1948A' },
-    { to: '/gateway-configuration/whatsapp', label: 'WhatsApp', dotColor: '#F7DC6F' },
+    { to: '/gateway-configuration/sms', label: 'SMS', dotColor: '#FFAB00' },
+    { to: '/gateway-configuration/email', label: 'Email', dotColor: '#80CDF2' },
+    // { to: '/gateway-configuration/ussd', label: 'USSD', dotColor: '#F1948A' },
+    // { to: '/gateway-configuration/whatsapp', label: 'WhatsApp', dotColor: '#F7DC6F' },
   ];
 
   return (

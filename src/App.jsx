@@ -66,8 +66,8 @@ function App() {
         <Route path="gateway-configuration" element={<GateWayConfigurationPage />} />
         <Route path="gateway-configuration/sms" element={<Sms />} />
         <Route path="gateway-configuration/email" element={<Email />} />
-        <Route path="gateway-configuration/ussd" element={<Ussd />} />
-        <Route path="gateway-configuration/whatsapp" element={<Watsapp />} />
+        {/* <Route path="gateway-configuration/ussd" element={<Ussd />} />
+        <Route path="gateway-configuration/whatsapp" element={<Watsapp />} /> */}
 
         <Route path="settings" element={<SettingsPage />} />
         <Route path="activity-log" element={<ActivityLogPage />} />
