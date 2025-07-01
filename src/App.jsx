@@ -29,6 +29,9 @@ import Watsapp from './Component/SubPages/Watsapp';
 import SystemDashboardOne from './Component/Pages/SystemDashboardOne';
 import NewSystemForm from './Component/Pages/NewSystemForm'; // NEW PAGE
 
+// ✅ SMS Configuration Form - ADD THIS IMPORT
+import SmsConfigData from './Component/SubPages/SmsConfigData'; // You'll need to create this component
+
 import './App.css';
 
 function App() {
@@ -64,7 +67,12 @@ function App() {
         </Route>
 
         <Route path="gateway-configuration" element={<GateWayConfigurationPage />} />
-        <Route path="gateway-configuration/sms" element={<Sms />} />
+        
+        {/* ✅ Updated SMS route with nested routing */}
+        <Route path="gateway-configuration/sms" element={<Sms />}>
+          <Route path="sms-config-data" element={<SmsConfigData />} />
+        </Route>
+        
         <Route path="gateway-configuration/email" element={<Email />} />
         {/* <Route path="gateway-configuration/ussd" element={<Ussd />} />
         <Route path="gateway-configuration/whatsapp" element={<Watsapp />} /> */}

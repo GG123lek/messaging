@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import PageHeader from '../PageHeader/PageHeader';
 
 import goop from "../../assets/images/fine.png";
@@ -10,6 +11,12 @@ import GatewayConfig from '../Pages/GatewayConfig';
 import SmsConfigurationList from '../../Component/SubPages/SmsConfigurationList';
 
 function Sms() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Check if we're on a nested route (like sms-config-form)
+  const isNestedRoute = location.pathname !== '/gateway-configuration/sms';
+
   return (
     <div className='max-w-7xl mx-auto'>
       <PageHeader
@@ -43,11 +50,19 @@ function Sms() {
         </div>
       </PageHeader>
 
-      <GatewayConfig />
+      {/* Only show main content when not on a nested route */}
+      {!isNestedRoute && (
+        <>
+          <GatewayConfig navigate={navigate} />
+          
+          <div className=''>
+            <SmsConfigurationList />
+          </div>
+        </>
+      )}
 
-      <div className=''>
-        <SmsConfigurationList />
-      </div>
+      {/* This will render nested routes like sms-config-form */}
+      <Outlet />
     </div>
   );
 }
