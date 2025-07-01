@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import React, { useState,} from 'react';
+import { useNavigate } from 'react-router-dom';
+import backArrowBlue from '../../assets/images/leftin.png'
+import SmsAdvanceConfigurationForm from '../Pages/SmsAdvanceConfigurationForm';
 
 function SmsConfigData() {
   const [formData, setFormData] = useState({
@@ -27,9 +29,12 @@ function SmsConfigData() {
     alert('Configuration saved successfully!');
   };
 
-  const handleGoBack = () => {
-    alert('Going back to SMS configuration list');
-  };
+  const navigate = useNavigate();
+
+     const handleGoBack = () => {
+        navigate('/gateway-configuration/sms'); // 👈 navigate to parent uba path
+      };
+    
 
   return (
     <div className='p-6 max-w-4xl'>
@@ -37,19 +42,17 @@ function SmsConfigData() {
       <div className=" gap-4 mb-6">
         <button
           onClick={handleGoBack}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="flex items-center gap-2 text-[#2292FC] text-sm font-medium mb-1 cursor-pointer"
         >
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
+          <img src={backArrowBlue} alt='Go Back' className="w-4 h-4 text-gray-600" />
+          Go Back
         </button>
-        <div>
-          <h1 className="text-2xl font-bold text-[#101828] mb-1">New SMS Configuration</h1>
-          <p className="text-sm text-[#667085]">
-            Configure a new SMS gateway provider
-          </p>
+        <div className='text-2xl font-semibold text-[#101828]'>
+          Add new SMS Configuration
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+       {/* <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"> 
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -140,7 +143,8 @@ function SmsConfigData() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
+      <SmsAdvanceConfigurationForm/>
     </div>
   );
 }
