@@ -191,7 +191,7 @@ const SmsConfigurationForm = ({ configName }) => {
   return (
     <div className="bg-white rounded-lg">
       <div className="mb-4 p-4">
-        <h2 className="text-lg font-semibold text-gray-800">Edit {configName}</h2>
+        <h2 className="text-lg font-normal  text-gray-800">Edit {configName}</h2>
       </div>
       
       <div className="p-4 space-y-4 ml-6">
@@ -207,7 +207,8 @@ const SmsConfigurationForm = ({ configName }) => {
                 value={formData[field.name]}
                 onChange={handleChange}
                 placeholder={field.placeholder}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md 
+                focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"
               />
             </div>
           </div>
