@@ -14,7 +14,7 @@ function GatewayConfig({ navigate }) {
         
         <button
           onClick={() => navigate('sms-config-data')}
-          className="flex items-center gap-2 bg-[#FFFFFF] text-[#464F60] text-sm font-medium px-4 py-2
+          className="flex items-center gap-2 bg-white text-[#464F60] text-sm font-medium px-4 py-2
           rounded-md  cursor-pointer"
         >
           <img src={pluss} alt="Add" className="w-4 h-4" />
