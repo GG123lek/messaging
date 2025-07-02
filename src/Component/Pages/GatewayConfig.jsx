@@ -17,7 +17,7 @@ function GatewayConfig({ navigate }) {
           className="flex items-center gap-2 bg-[#FFFFFF] text-[#464F60] text-sm font-medium px-4 py-2
           rounded-md  cursor-pointer"
         >
-          <img src={pluss} alt="Add" className="w-4 h-4" />
+          <img src={pluss} alt="Add" className="w-3 h-3" />
           New SMS Configuration
         </button>
       </div>

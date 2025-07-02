@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import mast from '../../assets/images/mask.png'
 
 const SmsConfigurationList = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [draggedIndex, setDraggedIndex] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   
   // Initial configurations array
   const [configurations, setConfigurations] = useState([
@@ -68,6 +70,11 @@ const SmsConfigurationList = () => {
     }
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setExpandedIndex(null);
+  };
+
   const DragIcon = () => (
     <svg 
       className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" 
@@ -80,6 +87,34 @@ const SmsConfigurationList = () => {
 
   return (
     <div className="w-full px-6">
+      {/* Success Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-transparent flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-8 w-[400px] text-center shadow-lg">
+            <div className="mb-6 mx-auto w-[120px] h-[120px] bg-green-100 rounded-full flex items-center justify-center">
+              {/* <svg className="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg> */}
+               <img
+                src={mast}
+                alt="Success"
+                className="mb-6 mx-auto w-[120px] h-auto"
+                />
+            </div>
+            <h2 className="text-2xl font-bold mb-2">Successful !!</h2>
+            <p className="text-gray-700 mb-8">
+              You have successfully updated the SMS configuration
+            </p>
+            <button
+              onClick={handleCloseModal}
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="border border-gray-300 rounded-lg p-6 bg-white">
         <div className="space-y-4">
           {configurations.map((config, index) => (
@@ -97,7 +132,7 @@ const SmsConfigurationList = () => {
               >
                 <div className="flex items-center space-x-3">
                   <DragIcon />
-                  <span className="text-sm text-gray-700">{config.name}</span>
+                  <span className="text-[16px] font-semibold text-gray-700">{config.name}</span>
                   {config.isPrimary && (
                     <span className="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
                       Primary
@@ -124,6 +159,7 @@ const SmsConfigurationList = () => {
                 <div className="mt-2 border border-gray-300 rounded-md p-0">
                   <SmsConfigurationForm 
                     configName={config.name}
+                    onSave={() => setShowModal(true)}
                   />
                 </div>
               )}
@@ -135,7 +171,7 @@ const SmsConfigurationList = () => {
   );
 };
 
-const SmsConfigurationForm = ({ configName }) => {
+const SmsConfigurationForm = ({ configName, onSave }) => {
   const [formData, setFormData] = useState({
     smppName: configName || 'SMS Configuration 1',
     providerName: 'Walsey Global',
@@ -166,12 +202,13 @@ const SmsConfigurationForm = ({ configName }) => {
 
   const handleSubmit = () => {
     console.log('Form submitted:', formData);
+    onSave();
   };
 
   const formFields = [
     { name: 'smppName', label: 'SMPP Name', type: 'text', width: 'w-96' },
     { name: 'providerName', label: 'Provider Name', type: 'text', width: 'w-96' },
-    { name: 'smppHost', label: 'SMPP Host', type: 'text', width: 'w-150' },
+    { name: 'smppHost', label: 'SMPP Host', type: 'text', width: 'w-full' },
     { name: 'smppPort', label: 'SMPP Port', type: 'text', width: 'w-96' },
     { name: 'smppUsername', label: 'SMPP User Name', type: 'text', width: 'w-96' },
     { name: 'smppPassword', label: 'SMPP Password', type: 'password', width: 'w-96' },
@@ -191,7 +228,7 @@ const SmsConfigurationForm = ({ configName }) => {
   return (
     <div className="bg-white rounded-lg">
       <div className="mb-4 p-4">
-        <h2 className="text-lg font-normal  text-gray-800">Edit {configName}</h2>
+        <h2 className="text-lg font-semibold text-gray-800">Edit {configName}</h2>
       </div>
       
       <div className="p-4 space-y-4 ml-6">
@@ -207,14 +244,13 @@ const SmsConfigurationForm = ({ configName }) => {
                 value={formData[field.name]}
                 onChange={handleChange}
                 placeholder={field.placeholder}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md 
-                focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-[16px] font-normal"
               />
             </div>
           </div>
         ))}
 
-         <div className="flex justify-end space-x-3 pt-6 mt-6 "> 
+        <div className="flex justify-end space-x-3 pt-6 mt-6 ">
           <button
             className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
           >
@@ -222,7 +258,7 @@ const SmsConfigurationForm = ({ configName }) => {
           </button>
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-blue-600 text-white rounded-md cursor-pointer hover:bg-blue-700 transition-colors"
           >
             Save Changes
           </button>

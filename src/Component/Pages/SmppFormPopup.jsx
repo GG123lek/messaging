@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import maskit from '../../assets/images/maskfive.png';
+import mast from '../../assets/images/mask.png'
 
 const SmppFormPopup = ({ onClose, mode = 'configure', title = '', successMessage = '' }) => {
   const [isFormOpen, setIsFormOpen] = useState(true);
@@ -205,7 +205,11 @@ const SmppFormPopup = ({ onClose, mode = 'configure', title = '', successMessage
           <div className="w-[320px] p-6 bg-white shadow-lg rounded-lg text-center">
             <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <div className="w-14 h-14 bg-white rounded-lg flex items-center justify-center">
-                <img src={maskit} alt="" className="w-10 h-10" />
+                 <img
+                  src={mast}
+                  alt="Success"
+                  className="mb-6 mx-auto w-[120px] h-auto"
+                 />
               </div>
             </div>
             <h2 className="text-base font-medium text-gray-900 mb-1">Successful !!</h2>

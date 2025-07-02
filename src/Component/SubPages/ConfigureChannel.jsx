@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import mast from '../../assets/images/mask.png'
 
 export default function ConfigureChannel() {
   const [toggles, setToggles] = useState({
@@ -105,10 +106,10 @@ export default function ConfigureChannel() {
         <div className="fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm z-50">
           <div className="bg-white rounded-lg p-6 max-w-sm w-full text-center shadow-lg">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/190/190411.png"
-              alt="Success"
-              className="mx-auto mb-4 w-16 h-16"
-            />
+             src={mast}
+             alt="Success"
+             className="mb-6 mx-auto w-[120px] h-auto"
+             />
             <h2 className="text-lg font-semibold mb-2 text-gray-900">
               Changes Saved Successfully!
             </h2>
