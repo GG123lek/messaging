@@ -1,5 +1,5 @@
 import React from 'react';
-import plus from '../../assets/images/whiteadd.png'; // Import your plus icon
+import pluss from '../../assets/images/plustoday.png'; // Import your plus icon
 
 function GatewayConfig({ navigate }) {
   return (
@@ -14,10 +14,10 @@ function GatewayConfig({ navigate }) {
         
         <button
           onClick={() => navigate('sms-config-data')}
-          className="flex items-center gap-2 bg-[#2292FC] text-white text-sm font-medium px-4 py-2
-          rounded-md shadow-sm hover:bg-[#1b7ed1] transition cursor-pointer"
+          className="flex items-center gap-2 bg-[#FFFFFF] text-[#464F60] text-sm font-medium px-4 py-2
+          rounded-md  cursor-pointer"
         >
-          <img src={plus} alt="Add" className="w-4 h-4" />
+          <img src={pluss} alt="Add" className="w-4 h-4" />
           New SMS Configuration
         </button>
       </div>
