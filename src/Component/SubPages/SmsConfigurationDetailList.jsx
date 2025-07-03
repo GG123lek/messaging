@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import mast from '../../assets/images/mask.png'
 
-const SmsConfigurationList = () => {
+const SmsConfigurationDetailList = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [showModal, setShowModal] = useState(false);
   
-  // Initial configurations array
   const [configurations, setConfigurations] = useState([
     { id: 1, name: 'SMS Configuration 1', type: 'Primary Configuration', isPrimary: true },
     { id: 2, name: 'SMS Configuration 2', type: 'Fall Back 1', isPrimary: false },
@@ -32,13 +30,9 @@ const SmsConfigurationList = () => {
     const newConfigurations = [...configurations];
     const draggedItem = newConfigurations[draggedIndex];
     
-    // Remove the dragged item
     newConfigurations.splice(draggedIndex, 1);
-    
-    // Insert at new position
     newConfigurations.splice(dropIndex, 0, draggedItem);
     
-    // Update primary configuration (first one is always primary)
     newConfigurations.forEach((config, index) => {
       config.isPrimary = index === 0;
       config.type = index === 0 ? 'Primary Configuration' : `Fall Back ${index}`;
@@ -47,7 +41,6 @@ const SmsConfigurationList = () => {
     setConfigurations(newConfigurations);
     setDraggedIndex(null);
     
-    // If expanded item was moved, update expanded index
     if (expandedIndex === draggedIndex) {
       setExpandedIndex(dropIndex);
     } else if (expandedIndex !== null) {
@@ -60,7 +53,6 @@ const SmsConfigurationList = () => {
   };
 
   const toggleExpand = (index, e) => {
-    // Check if the click was on the arrow icon
     if (e.target.closest('.arrow-icon')) {
       if (expandedIndex === index) {
         setExpandedIndex(null);
@@ -85,25 +77,36 @@ const SmsConfigurationList = () => {
     </svg>
   );
 
+  const SmsSuccessIcon = () => (
+    <div className="relative">
+      <svg 
+        className="w-16 h-16 text-green-500" 
+        fill="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      </svg>
+      <svg 
+        className="absolute -bottom-2 -right-2 w-8 h-8 text-blue-500" 
+        fill="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4l2-2h14v2zm0-5H6l2-2h12v2zm0-5H8L6 6h14v2z"/>
+      </svg>
+    </div>
+  );
+
   return (
     <div className="w-full px-6">
-      {/* Success Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-transparent flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-8 w-[400px] text-center shadow-lg">
             <div className="mb-6 mx-auto w-[120px] h-[120px] bg-green-100 rounded-full flex items-center justify-center">
-              {/* <svg className="w-16 h-16 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg> */}
-               <img
-                src={mast}
-                alt="Success"
-                className="mb-6 mx-auto w-[120px] h-auto"
-                />
+              <SmsSuccessIcon />
             </div>
-            <h2 className="text-2xl font-bold mb-2">Successful !!</h2>
+            <h2 className="text-2xl font-bold mb-2">SMS Configuration Updated!</h2>
             <p className="text-gray-700 mb-8">
-              You have successfully updated the SMS configuration
+              Your SMS configuration has been successfully saved and updated.
             </p>
             <button
               onClick={handleCloseModal}
@@ -119,7 +122,6 @@ const SmsConfigurationList = () => {
         <div className="space-y-4">
           {configurations.map((config, index) => (
             <div key={config.id} className="space-y-0">
-              {/* Configuration Item */}
               <div
                 draggable
                 onDragStart={(e) => handleDragStart(e, index)}
@@ -154,7 +156,6 @@ const SmsConfigurationList = () => {
                 </div>
               </div>
 
-              {/* Expanded Form (only for clicked item) */}
               {expandedIndex === index && (
                 <div className="mt-2 border border-gray-300 rounded-md p-0">
                   <SmsConfigurationForm 
@@ -208,7 +209,7 @@ const SmsConfigurationForm = ({ configName, onSave }) => {
   const formFields = [
     { name: 'smppName', label: 'SMPP Name', type: 'text', width: 'w-96' },
     { name: 'providerName', label: 'Provider Name', type: 'text', width: 'w-96' },
-    { name: 'smppHost', label: 'SMPP Host', type: 'text', width: 'w-full' },
+    { name: 'smppHost', label: 'SMPP Host', type: 'text', width: 'w-155' },
     { name: 'smppPort', label: 'SMPP Port', type: 'text', width: 'w-96' },
     { name: 'smppUsername', label: 'SMPP User Name', type: 'text', width: 'w-96' },
     { name: 'smppPassword', label: 'SMPP Password', type: 'password', width: 'w-96' },
@@ -268,4 +269,4 @@ const SmsConfigurationForm = ({ configName, onSave }) => {
   );
 };
 
-export default SmsConfigurationList;
+export default SmsConfigurationDetailList;

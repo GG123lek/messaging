@@ -27,10 +27,12 @@ import Watsapp from './Component/SubPages/Watsapp';
 
 // ✅ New pages
 import SystemDashboardOne from './Component/Pages/SystemDashboardOne';
-import NewSystemForm from './Component/Pages/NewSystemForm'; // NEW PAGE
+import NewSystemForm from './Component/Pages/NewSystemForm';
 
-// ✅ SMS Configuration Form - ADD THIS IMPORT
-import SmsConfigData from './Component/SubPages/SmsConfigData'; // You'll need to create this component
+// ✅ Configuration Forms
+import SmsConfigData from './Component/SubPages/SmsConfigData';
+import EmailConfigData from './Component/SubPages/EmailConfigData';
+
 
 import './App.css';
 
@@ -67,15 +69,16 @@ function App() {
         </Route>
 
         <Route path="gateway-configuration" element={<GateWayConfigurationPage />} />
-        
-        {/* ✅ Updated SMS route with nested routing */}
+
+        {/* ✅ SMS route with nested routing */}
         <Route path="gateway-configuration/sms" element={<Sms />}>
           <Route path="sms-config-data" element={<SmsConfigData />} />
         </Route>
-        
-        <Route path="gateway-configuration/email" element={<Email />} />
-        {/* <Route path="gateway-configuration/ussd" element={<Ussd />} />
-        <Route path="gateway-configuration/whatsapp" element={<Watsapp />} /> */}
+
+        <Route path="gateway-configuration/email" element={<Email />}>
+        <Route path="email-config-data" element={<EmailConfigData />} />
+        </Route>
+
 
         <Route path="settings" element={<SettingsPage />} />
         <Route path="activity-log" element={<ActivityLogPage />} />

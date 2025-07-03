@@ -8,14 +8,14 @@ import chevrons from "../../assets/images/down.png";
 import avas from "../../assets/images/picet.png";
 
 import GatewayConfig from '../Pages/GatewayConfig';
-import SmsConfigurationList from '../../Component/SubPages/SmsConfigurationList';
+import SmsConfigurationDetailList from '../../Component/SubPages/SmsConfigurationDetailList';
 
 function Sms() {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Check if we're on a nested route (like sms-config-form)
-  const isNestedRoute = location.pathname !== '/gateway-configuration/sms';
+  // Fixed: More accurate route detection
+  const isConfigDataRoute = location.pathname.includes('sms-config-data');
 
   return (
     <div className='max-w-7xl mx-auto'>
@@ -50,18 +50,17 @@ function Sms() {
         </div>
       </PageHeader>
 
-      {/* Only show main content when not on a nested route */}
-      {!isNestedRoute && (
+      {/* Show main content except when on the config data route */}
+      {!isConfigDataRoute && (
         <>
           <GatewayConfig navigate={navigate} />
-          
           <div className=''>
-            <SmsConfigurationList />
+            <SmsConfigurationDetailList />
           </div>
         </>
       )}
 
-      {/* This will render nested routes like sms-config-form */}
+      {/* This will render SmsConfigData when on that route */}
       <Outlet />
     </div>
   );

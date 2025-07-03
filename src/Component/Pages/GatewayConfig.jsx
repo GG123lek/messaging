@@ -6,7 +6,7 @@ function GatewayConfig({ navigate }) {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-xl font-bold text-[#101828] mb-1">SMS Gateway Configuration</h1>
+          <h1 className="text-xl font-bold text-[#101828] mb-1">Sms Gateway Configuration</h1>
           <p className="text-sm text-[#667085]">
             This page allows you to manage SMS gateway configurations
           </p>
