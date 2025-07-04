@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './Layout/Layout';
 
 import DashboardPage from './Component/Pages/DashboardPage';
-import ClientSystem from './Component/Pages/ClientSystem';
 import GateWayConfigurationPage from './Component/Pages/GateWayConfigurationPage';
 import ReportPage from './Component/Pages/ReportPage';
 import SettingsPage from './Component/Pages/SettingsPage';
@@ -13,17 +12,9 @@ import ClientDetailsPage from './Component/Pages/ClientDetailsPage';
 import EditCoreBankingPage from './Component/Pages/EditCoreBankingPage';
 import CustomerForm from './Component/Pages/CustomerForm';
 
-// Client System sub-routes
-import NewClientSystem from './Component/SubPages/NewClientSystem';
-import CoreBanking from './Component/SubPages/CoreBanking';
-import CMS from './Component/SubPages/Cms';
-import ERP from './Component/SubPages/Erp';
-
 // Gateway sub-routes
 import Email from './Component/SubPages/Email';
 import Sms from './Component/SubPages/Sms';
-import Ussd from './Component/SubPages/Ussd';
-import Watsapp from './Component/SubPages/Watsapp';
 
 // ✅ New pages
 import SystemDashboardOne from './Component/Pages/SystemDashboardOne';
@@ -33,6 +24,8 @@ import NewSystemForm from './Component/Pages/NewSystemForm';
 import SmsConfigData from './Component/SubPages/SmsConfigData';
 import EmailConfigData from './Component/SubPages/EmailConfigData';
 
+// ✅ SMPP System Monitor Page (you'll need to create this)
+import SmppSystemMonitor from './Component/Pages/SmppSystemMonitor';
 
 import './App.css';
 
@@ -48,40 +41,37 @@ function App() {
           <Route path="customer-form" element={<CustomerForm />} />
           <Route path="details/:slug" element={<ClientDetailsPage />} />
           <Route path="details/:slug/editcorebanking" element={<EditCoreBankingPage />} />
+          <Route path="details/:slug/new-system" element={<NewSystemForm />} />
         </Route>
 
-        {/* Client system + new dashboard page + new system form */}
-        <Route path="client-system">
-          <Route index element={<ClientSystem />} />
-          <Route path="system-dashboard-one" element={<SystemDashboardOne />} />
-        </Route>
-
-        {/* 🔹 New empty form route */}
-        <Route path="/client-page/details/:slug/new-system" element={<NewSystemForm />} />
-
-        {/* Additional routes */}
-        <Route path="new-client-system" element={<NewClientSystem />} />
-
-        <Route path="report" element={<ReportPage />}>
-          <Route path="core-banking" element={<CoreBanking />} />
-          <Route path="cms" element={<CMS />} />
-          <Route path="erp" element={<ERP />} />
-        </Route>
-
+        {/* Gateway Configuration */}
         <Route path="gateway-configuration" element={<GateWayConfigurationPage />} />
 
-        {/* ✅ SMS route with nested routing */}
+        {/* SMS route with nested routing */}
         <Route path="gateway-configuration/sms" element={<Sms />}>
           <Route path="sms-config-data" element={<SmsConfigData />} />
         </Route>
 
+        {/* Email route with nested routing */}
         <Route path="gateway-configuration/email" element={<Email />}>
-        <Route path="email-config-data" element={<EmailConfigData />} />
+          <Route path="email-config-data" element={<EmailConfigData />} />
         </Route>
 
+        {/* Reports */}
+        <Route path="report" element={<ReportPage />} />
 
+        {/* SMPP System Monitor */}
+        <Route path="smpp-system-monitor" element={<SmppSystemMonitor />} />
+
+
+        {/* Settings */}
         <Route path="settings" element={<SettingsPage />} />
+
+        {/* Activity Log */}
         <Route path="activity-log" element={<ActivityLogPage />} />
+
+        {/* System Dashboard - keeping this if still needed */}
+        <Route path="system-dashboard-one" element={<SystemDashboardOne />} />
       </Route>
     </Routes>
   );

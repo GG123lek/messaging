@@ -2,29 +2,29 @@ import React from 'react';
 
 const WaterfallChart = () => {
   const data = [
-    { name: 'UBA', value: 10, cumulative: 10 },
-    { name: 'Eco Bank', value: 10, cumulative: 20 },
-    { name: 'GTB', value: 10, cumulative: 30 },
-    { name: 'First Bank', value: 10, cumulative: 40 },
-    { name: 'Hope Bank', value: 10, cumulative: 50 }
+    { name: 'UBA', value: 1000, cumulative: 1000 },
+    { name: 'Eco Bank', value: 1000, cumulative: 2000 },
+    { name: 'GTB', value: 1000, cumulative: 3000 },
+    { name: 'First Bank', value: 1000, cumulative: 4000 },
+    { name: 'Hope Bank', value: 1000, cumulative: 5000 }
   ];
 
   // Responsive dimensions
-  const chartWidth = 278;  // ← Increased from 607 to better fit the container
-  const chartHeight = 355; // ← Your specified height
-  const margin = { top: 20, right: 15, bottom: 35, left: 25 };
+  const chartWidth = 278;
+  const chartHeight = 355;
+  const margin = { top: 20, right: 15, bottom: 35, left: 35 }; // Increased left margin for thousands
   const innerWidth = chartWidth - margin.left - margin.right;
   const innerHeight = chartHeight - margin.top - margin.bottom;
   
-  const maxValue = 50;
+  const maxValue = 5000;
   const barWidth = innerWidth / data.length * 0.6;
   const barSpacing = innerWidth / data.length;
 
   // Y-axis scale
   const yScale = (value) => innerHeight - (value / maxValue) * innerHeight;
   
-  // Generate Y-axis ticks
-  const yTicks = [0, 10, 20, 30, 40, 50];
+  // Y-axis ticks in thousands
+  const yTicks = [0, 1000, 2000, 3000, 4000, 5000];
 
   return (
     <div className="w-full h-full">
@@ -78,17 +78,17 @@ const WaterfallChart = () => {
           strokeWidth={1}
         />
         
-        {/* Y-axis labels */}
+        {/* Y-axis labels - now showing full thousands */}
         {yTicks.map((tick) => (
           <text
             key={tick}
-            x={margin.left - 8}
+            x={margin.left - 5} // Adjusted position
             y={margin.top + yScale(tick) + 4}
             textAnchor="end"
             fontSize="10"
             fill="#666"
           >
-            {tick}
+            {tick.toLocaleString()} {/* Shows as 1,000, 2,000 etc. */}
           </text>
         ))}
         

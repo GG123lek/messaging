@@ -174,9 +174,9 @@ export default function DashboardPage() {
         </div>
 
         {/* Bottom chart containers - Fixed layout structure */}
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left side charts - Takes 2 columns */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left side charts - Takes 7 columns (769px equivalent) */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
             {/* Channel Delivery Analysis Chart */}
             <div className="bg-white rounded-lg shadow-md p-6 h-[465px]">
               {/* Top: Text + Date Picker */}
@@ -242,8 +242,8 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Right side charts - Takes 1 column, properly aligned */}
-          <div className="lg:col-span-1 flex flex-col gap-6">
+          {/* Right side charts - Takes 5 columns (607px equivalent), narrower containers */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
             {/* Top 5 Clients Container */}
             <div className="bg-white rounded-lg shadow-md p-6 h-[465px] flex flex-col">               
               {/* Header */}
