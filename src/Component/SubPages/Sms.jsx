@@ -53,7 +53,13 @@ function Sms() {
       {/* Show main content except when on the config data route */}
       {!isConfigDataRoute && (
         <>
-          <GatewayConfig navigate={navigate} />
+          <GatewayConfig 
+            navigate={navigate}
+            gatewayType="sms"
+            title="SMS Gateway Configuration"
+            description="This page allows you to manage SMS gateway configurations"
+            buttonText="New SMS Configuration"
+          />
           <div className=''>
             <SmsConfigurationDetailList />
           </div>
