@@ -1,152 +1,149 @@
-import React, { useState,} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import backArrowBlue from '../../assets/images/leftin.png'
-import SmsAdvanceConfigurationForm from '../Pages/SmsAdvanceConfigurationForm';
+import backArrowBlue from '../../assets/images/leftin.png';
+import mast from '../../assets/images/mask.png';
 
-function SmsConfigData() {
+const SmsConfigData = () => {
   const [formData, setFormData] = useState({
+    smppName: '',
     providerName: '',
-    apiUrl: '',
-    apiKey: '',
-    senderName: '',
-    isActive: true
+    smppHost: '',
+    smppPort: '',
+    smppUsername: '',
+    smppPassword: '',
+    txSessions: '',
+    rxSessions: '',
+    trxSessions: '',
+    systemType: '',
+    serviceType: '',
+    enquireLinkInterval: '',
+    reconnectDelay: '',
+    sourceAddrTON: '',
+    sourceAddrNPI: '',
+    destAddrTON: '',
+    destAddrNPI: ''
   });
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('SMS Config Data:', formData);
-    
-    // Navigate back to SMS page after submission
-    alert('Configuration saved successfully!');
+    setShowSuccessModal(true);
   };
 
-  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
-     const handleGoBack = () => {
-        navigate('/gateway-configuration/sms'); // 👈 navigate to parent uba path
-      };
-    
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+  };
+
+  const formFields = [
+    { name: 'smppName', label: 'SMPP Name', type: 'text', placeholder: 'Enter SMPP name', width: 'w-96' },
+    { name: 'providerName', label: 'Provider Name', type: 'text', placeholder: 'Enter provider name', width: 'w-96' },
+    { name: 'smppHost', label: 'SMPP Host', type: 'text', placeholder: 'Enter SMPP host', width: 'w-155' }, // Special width for SMPP Host
+    { name: 'smppPort', label: 'SMPP Port', type: 'text', placeholder: 'Enter SMPP port', width: 'w-96' },
+    { name: 'smppUsername', label: 'SMPP Username', type: 'text', placeholder: 'Enter username', width: 'w-96' },
+    { name: 'smppPassword', label: 'SMPP Password', type: 'password', placeholder: 'Enter password', width: 'w-96' },
+    { name: 'txSessions', label: 'TX Sessions', type: 'text', placeholder: 'Enter TX sessions', width: 'w-96' },
+    { name: 'rxSessions', label: 'RX Sessions', type: 'text', placeholder: 'Enter RX sessions', width: 'w-96' },
+    { name: 'trxSessions', label: 'TRx Sessions', type: 'text', placeholder: 'Enter TRx sessions', width: 'w-96' },
+    { name: 'systemType', label: 'System Type', type: 'text', placeholder: 'Enter system type', width: 'w-96' },
+    { name: 'serviceType', label: 'Service Type', type: 'text', placeholder: 'Enter service type', width: 'w-96' },
+    { name: 'enquireLinkInterval', label: 'Enquire Link Interval', type: 'text', placeholder: 'Enter interval', width: 'w-96' },
+    { name: 'reconnectDelay', label: 'Reconnect Delay', type: 'text', placeholder: 'Enter delay', width: 'w-96' },
+    { name: 'sourceAddrTON', label: 'Source ADDR TON', type: 'text', placeholder: 'Enter source TON', width: 'w-96' },
+    { name: 'sourceAddrNPI', label: 'Source ADDR NPI', type: 'text', placeholder: 'Enter source NPI', width: 'w-96' },
+    { name: 'destAddrTON', label: 'Dest ADDR TON', type: 'text', placeholder: 'Enter dest TON', width: 'w-96' },
+    { name: 'destAddrNPI', label: 'Dest ADDR NPI', type: 'text', placeholder: 'Enter dest NPI', width: 'w-96' }
+  ];
 
   return (
-    <div className='p-6 max-w-4xl'>
-      {/* Back arrow and header */}
-      <div className=" gap-4 mb-6">
+    <div className="w-full px-6 py-4">
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-transparent flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-8 w-[400px] text-center shadow-lg">
+            <div className="mb-6 mx-auto w-[120px] h-[120px] bg-green-100 rounded-full flex items-center justify-center">
+              <img src={mast} alt="Success" className="w-16 h-16" />
+            </div>
+            <h2 className="text-2xl font-bold mb-2">Configuration Saved!</h2>
+            <p className="text-gray-700 mb-8">
+              Your SMS configuration has been successfully saved.
+            </p>
+            <button
+              onClick={handleCloseModal}
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Header */}
+      <div className="gap-4 mb-6">
         <button
           onClick={handleGoBack}
           className="flex items-center gap-2 text-[#2292FC] text-sm font-medium mb-1 cursor-pointer"
         >
-          <img src={backArrowBlue} alt='Go Back' className="w-4 h-4 text-gray-600" />
+          <img src={backArrowBlue} alt='Go Back' className="w-4 h-4" />
           Go Back
         </button>
         <div className='text-2xl font-semibold text-[#101828]'>
           Add new SMS Configuration
         </div>
+        <p className="text-[#667085]">Enter all information to create a new SMS configuration</p>
       </div>
 
-       {/* <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"> 
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="providerName" className="block text-sm font-medium text-gray-700 mb-2">
-                Provider Name *
+      {/* Form */}
+      <div className="border border-gray-300 rounded-lg bg-white">
+        <div className="p-6 space-y-4">
+          {formFields.map((field) => (
+            <div key={field.name} className="flex items-center border-b border-gray-200 pb-4">
+              <label className="w-48 text-sm font-medium text-gray-700">
+                {field.label}
               </label>
-              <input
-                type="text"
-                id="providerName"
-                name="providerName"
-                value={formData.providerName}
-                onChange={handleInputChange}
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="e.g., Twilio, AWS SNS"
-              />
+              <div className={field.width}> {/* Using the specific width for each field */}
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  placeholder={field.placeholder}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                />
+              </div>
             </div>
+          ))}
 
-            <div>
-              <label htmlFor="senderName" className="block text-sm font-medium text-gray-700 mb-2">
-                Sender Name *
-              </label>
-              <input
-                type="text"
-                id="senderName"
-                name="senderName"
-                value={formData.senderName}
-                onChange={handleInputChange}
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="e.g., YourCompany"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="apiUrl" className="block text-sm font-medium text-gray-700 mb-2">
-              API URL *
-            </label>
-            <input
-              type="url"
-              id="apiUrl"
-              name="apiUrl"
-              value={formData.apiUrl}
-              onChange={handleInputChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="https://api.provider.com/sms"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 mb-2">
-              API Key *
-            </label>
-            <input
-              type="password"
-              id="apiKey"
-              name="apiKey"
-              value={formData.apiKey}
-              onChange={handleInputChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter your API key"
-            />
-          </div>
-
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="isActive"
-              name="isActive"
-              checked={formData.isActive}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-            />
-            <label htmlFor="isActive" className="ml-2 block text-sm text-gray-700">
-              Set as active configuration
-            </label>
-          </div>
-
-          <div className="flex items-center justify-end gap-4 pt-6 border-t border-gray-200">
+          <div className="flex justify-end space-x-3 pt-6">
             <button
+              type="button"
+              onClick={handleGoBack}
+              className="px-4 py-2 border border-gray-300 cursor-pointer rounded-md text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
               onClick={handleSubmit}
-              className="px-6 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              className="px-4 py-2 bg-blue-600 text-white cursor-pointer rounded-md hover:bg-blue-700"
             >
               Save Configuration
             </button>
           </div>
         </div>
-      </div> */}
-      <SmsAdvanceConfigurationForm/>
+      </div>
     </div>
   );
-}
+};
 
 export default SmsConfigData;
