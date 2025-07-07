@@ -13,6 +13,7 @@ import NotificationHeaderSection from '../OtherPage/NotificationHeaderSection';
 import NotificationLegend from '../OtherPage/NotificationLegend';
 import MonthlyMessageDetailsChart from '../MyChart/MonthlyMessageDetailsChart';
 import DeliveryTrendChart from '../MyChart/DeliveryTrendChart';
+import ToggleTags from '../SubPages/ToggleTags';
 
 function ReportsPage() {
   const [activeTab, setActiveTab] = useState('SMS');
@@ -41,7 +42,7 @@ function ReportsPage() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Page Header */}
+      {/* Header */}
       <PageHeader
         title={
           <div className="flex items-center gap-2 text-xl font-semibold text-gray-800">
@@ -71,39 +72,37 @@ function ReportsPage() {
 
       {/* Page Content */}
       <div className="p-6 space-y-6">
-        {/* Top Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        {/* Header Section */}
+        <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Reports</h1>
-            <p className="text-sm text-gray-500">
-              Reports on message delivery, usage, and system metrics.
-            </p>
+            <p className="text-sm text-gray-500">Reports on message delivery, usage, and system metrics.</p>
           </div>
-          <button className="flex items-center gap-2 border border-gray-300 bg-white rounded-md px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">
-            <img src={ganaa} alt="Export Icon" />
+          <button className="flex items-center gap-2 border border-gray-300 bg-white 
+          rounded-md px-4 py-2 text-sm font-semibold cursor-pointer text-gray-700 hover:bg-gray-50">
+            <img src={ganaa} alt="Export" />
             Export Report
           </button>
         </div>
 
-        {/* Summary Section */}
+        {/* Message Notification Summary */}
         <div className="bg-white rounded-lg shadow-sm p-6 space-y-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <h2 className="text-xl font-semibold">Message Notification Summary</h2>
-              <p className="text-sm text-gray-500">
-                Show delivery performance for each notification messages
-              </p>
+              <p className="text-sm text-gray-500">Show delivery performance for each notification messages</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
+              <button className="flex items-center gap-2 px-4 py-2 cursor-pointer border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
                 <img src={butg} alt="" /> Filter
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
+              <button className="flex items-center gap-2 px-4 py-2 border cursor-pointer border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
                 <img src={casd} alt="" /> Monthly
               </button>
             </div>
           </div>
 
+          {/* Summary Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {summaryData.map((item, index) => (
               <div key={index} className="bg-white rounded-md border border-gray-200 p-4">
@@ -114,16 +113,16 @@ function ReportsPage() {
           </div>
         </div>
 
-        {/* Notification Chart Section */}
-        <div className="bg-white shadow rounded-lg border border-none p-6 space-y-4">
+        {/* Notification Chart */}
+        <div className="bg-white shadow rounded-lg border border-none p-6 space-y-6">
           <NotificationHeaderSection />
           <NotificationLegend />
           <MonthlyMessageDetailsChart data={janToDecData} yAxisDomain={[0, 400]} containerHeight="100%" />
         </div>
 
-        {/* Delivery Trend Section */}
-        <div className="bg-white shadow rounded-lg border border-none p-6 space-y-4">
-          {/* Tabs at the top */}
+        {/* Delivery Trend Chart Section */}
+        <div className="bg-white shadow rounded-lg border border-none p-6 space-y-6">
+          {/* Tabs */}
           <div className="inline-flex rounded-md border border-gray-200">
             <button
               onClick={() => setActiveTab('SMS')}
@@ -143,26 +142,30 @@ function ReportsPage() {
             </button>
           </div>
 
-          {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+          {/* Header + Buttons */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <h2 className="text-xl font-semibold text-gray-900">Delivery Trend Graph</h2>
-              <p className="text-sm text-gray-500">
-                Visualize delivery status trends over time (Success, Failed, Pending)
-              </p>
+              <p className="text-sm text-gray-500">Visualize delivery status trends over time (Success, Failed, Pending)</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
+              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300  rounded-md 
+              text-sm text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
                 <img src={butg} alt="" /> Filter
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
+              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300
+               rounded-md text-sm  text-gray-700 hover:bg-gray-50 w-full sm:w-auto">
                 <img src={casd} alt="" /> Monthly
               </button>
             </div>
           </div>
 
-          {/* Chart Component */}
           <DeliveryTrendChart type={activeTab.toLowerCase()} />
+        </div>
+
+        {/* ToggleTags in its own card */}
+        <div className="bg-white shadow rounded-lg border border-none p-6">
+          <ToggleTags />
         </div>
       </div>
 
