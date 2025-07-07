@@ -141,7 +141,7 @@ function Sidebar({ onLinkClick }) {
 
         {/* Other Pages */}
         {[
-          { to: '/report', label: 'Reports', icon: repot },
+          { to: '/reports', label: 'Reports', icon: repot },
           { to: '/smpp-system-monitor', label: 'SMPP System Monitor', icon: server },
           { to: '/settings', label: 'Settings', icon: acti },
           { to: '/activity-log', label: 'Activity Logs', icon: act },

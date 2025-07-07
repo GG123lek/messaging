@@ -4,7 +4,7 @@ import Layout from './Layout/Layout';
 
 import DashboardPage from './Component/Pages/DashboardPage';
 import GateWayConfigurationPage from './Component/Pages/GateWayConfigurationPage';
-import ReportPage from './Component/Pages/ReportPage';
+import ReportsPage from './Component/Pages/ReportsPage';
 import SettingsPage from './Component/Pages/SettingsPage';
 import ActivityLogPage from './Component/Pages/ActivityLogPage';
 import ClientPage from './Component/Pages/ClientPage';
@@ -58,7 +58,7 @@ function App() {
         </Route>
 
         {/* Reports */}
-        <Route path="report" element={<ReportPage />} />
+        <Route path="reports" element={<ReportsPage />} />
 
         {/* SMPP System Monitor */}
         <Route path="smpp-system-monitor" element={<SmppSystemMonitor />} />
