@@ -5,8 +5,10 @@ import bells from '../../assets/images/bell rang.png';
 import avas from '../../assets/images/picet.png';
 import chevrons from '../../assets/images/down.png';
 import cardBgImage from '../../assets/images/weeg.png';
-import nodejsLogo from '../../assets/images/nodals.png'; // Import Node.js logo
-import redisLogo from '../../assets/images/ratin.png'; // Import Redis logo
+import nodejsLogo from '../../assets/images/nodals.png'; 
+import redisLogo from '../../assets/images/ratin.png'; 
+import bogy from '../../assets/images/babylog.png'
+import { FiArrowUp } from 'react-icons/fi';
 
 function SmppSystemMonitor() {
   return (
@@ -49,7 +51,7 @@ function SmppSystemMonitor() {
         <div className="flex flex-wrap gap-4">
           {/* Card 1 - Background Image Card (No Borders) */}
           <div 
-            className="relative rounded-md p-3 w-[280px] h-[130px] overflow-hidden border-none"
+            className="relative rounded-md p-3 w-[315px] h-[130px] overflow-hidden border-none"
             style={{ 
               backgroundImage: `url(${cardBgImage})`,
               backgroundSize: "cover",
@@ -73,12 +75,39 @@ function SmppSystemMonitor() {
           </div>
 
           {/* Card 2 - Plain White Card (No Borders) */}
-          <div className="bg-white rounded-md p-3 w-[280px] h-[130px] border-none">
-            <h2 className="text-sm font-semibold text-gray-800 mb-1">Quick Stats</h2>
-            <p className="text-xs text-gray-600">Small insights here.</p>
-            <div className="mt-2 text-2xl font-bold text-[#2292FC]">1,024</div>
+          
+    <div className="bg-white rounded-md p-3 w-[315px] h-[130px] border-none relative">
+      {/* Header (stays at top) */}
+      <div className="flex items-center gap-2">
+        <img src={bogy} alt="" className="text-sm font-semibold text-gray-800" />
+        <p className="text-xs text-[#667085]">Connected Account</p>
+      </div>
+
+      {/* Centered Number Block */}
+      <div 
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 w-full px-3"
+        style={{ marginTop: '8px' }}
+      >
+        <div className="flex items-baseline gap-2">
+          <div className="text-2xl font-bold text-[#101828]">25.0</div>
+          <div className="flex items-center gap-1">
+            <div className="bg-[#F0FFF5] rounded-md px-1.5 py-0.5 flex items-center">
+              <FiArrowUp className="text-yellow-500 mr-0.5" />
+              <span className="text-xs font-medium text-yellow-500">15%</span>
+            </div>
+            <div className="text-xs text-[#667085] font-semibold">vs last week</div>
           </div>
         </div>
+      </div>
+
+      {/* Additional text line */}
+      <div className="absolute bottom-3 left-0 w-full px-3">
+        <p className="text-xs text-[#667085] whitespace-nowrap font-semibold overflow-hidden text-ellipsis">
+          Total SMPP client accounts connected to our server
+        </p>
+      </div>
+    </div>
+            </div>
       </div>
     </div>
   );
