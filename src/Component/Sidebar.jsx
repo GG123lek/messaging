@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { FiPlus, FiMinus } from 'react-icons/fi';
 
 import Logo from '../assets/images/Vector.png';
 import homa from '../assets/images/another.png';
@@ -9,7 +10,6 @@ import act from '../assets/images/mua.png';
 import acti from '../assets/images/settings.png';
 import logoutIcon from '../assets/images/log icon.png';
 import userIcon from '../assets/images/gafuse.png';
-import { FiPlus, FiMinus } from 'react-icons/fi';
 
 function Sidebar({ onLinkClick }) {
   const location = useLocation();
@@ -91,17 +91,30 @@ function Sidebar({ onLinkClick }) {
           </NavLink>
         </div>
 
-        {/* Gateway Configuration (Dropdown under Client) */}
+        {/* Gateway Configuration - Only Modified Section */}
         <div className="relative">
-          <div
-            onClick={() => setGatewayOpen(!gatewayOpen)}
-            className="flex items-center gap-3 px-4 py-2 rounded text-[#565869] text-[0.95rem] cursor-pointer w-full ml-4 mr-2"
-          >
-            <span className="w-4 flex justify-center flex-shrink-0">
-              {gatewayOpen ? <FiMinus size={16} /> : <FiPlus size={16} />}
-            </span>
-            <img src={server} alt="Gateway Icon" className="w-5 h-5 flex-shrink-0" />
-            <span className="flex-1 break-words">Gateway Configuration</span>
+          <div className="flex items-center">
+            {/* Toggle icon moved to far left */}
+            <div 
+              onClick={() => setGatewayOpen(!gatewayOpen)}
+              className="flex items-center justify-center w-4 ml-3 cursor-pointer"
+            >
+              {gatewayOpen ? <FiMinus size={14} /> : <FiPlus size={14} />}
+            </div>
+            
+            {/* Gateway item - perfectly aligned with other nav items */}
+            <div
+              onClick={() => setGatewayOpen(!gatewayOpen)}
+              className="flex items-center gap-3 px-3 py-2 rounded text-[#565869] text-[0.95rem] cursor-pointer"
+            >
+              <img 
+                src={server} 
+                alt="Gateway Icon" 
+                className="w-5 h-5 flex-shrink-0 ml-1" 
+                style={getIconStyle(false)}
+              />
+              <span className="break-words">Gateway Configuration</span>
+            </div>
           </div>
 
           {gatewayOpen && (
@@ -132,36 +145,101 @@ function Sidebar({ onLinkClick }) {
           )}
         </div>
 
-        {/* Remaining menu items */}
-        {[
-          { to: '/reports', label: 'Reports', icon: repot },
-          { to: '/smpp-system-monitor', label: 'SMPP System Monitor', icon: server },
-          { to: '/settings', label: 'Settings', icon: acti },
-          { to: '/activity-log', label: 'Activity Logs', icon: act },
-        ].map(({ to, label, icon }) => (
-          <div key={label} className="relative">
-            {isActive(to) && (
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[74%] bg-[#2292FC] rounded-r-md z-10" />
-            )}
-            <NavLink
-              to={to}
-              onClick={onLinkClick}
-              className={`flex items-center gap-3 px-4 py-2 rounded transition-colors duration-200 ml-4 mr-2 ${
-                isActive(to)
-                  ? 'bg-white text-[#2292FC] font-semibold border border-gray-200 shadow-sm'
-                  : 'text-[#565869]'
-              }`}
-            >
-              <img
-                src={icon}
-                alt={`${label} Icon`}
-                className="w-5 h-5 flex-shrink-0"
-                style={getIconStyle(isActive(to))}
-              />
-              <span className="break-words">{label}</span>
-            </NavLink>
-          </div>
-        ))}
+        {/* Reports */}
+        <div className="relative">
+          {isActive('/reports') && (
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[74%] bg-[#2292FC] rounded-r-md z-10" />
+          )}
+          <NavLink
+            to="/reports"
+            onClick={onLinkClick}
+            className={`flex items-center gap-3 px-4 py-2 rounded transition-colors duration-200 ml-4 mr-2 ${
+              isActive('/reports')
+                ? 'bg-white text-[#2292FC] font-semibold border border-gray-200 shadow-sm'
+                : 'text-[#565869]'
+            }`}
+          >
+            <img
+              src={repot}
+              alt="Reports Icon"
+              className="w-5 h-5 flex-shrink-0"
+              style={getIconStyle(isActive('/reports'))}
+            />
+            <span className="break-words">Reports</span>
+          </NavLink>
+        </div>
+
+        {/* SMPP System Monitor */}
+        <div className="relative">
+          {isActive('/smpp-system-monitor') && (
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[74%] bg-[#2292FC] rounded-r-md z-10" />
+          )}
+          <NavLink
+            to="/smpp-system-monitor"
+            onClick={onLinkClick}
+            className={`flex items-center gap-3 px-4 py-2 rounded transition-colors duration-200 ml-4 mr-2 ${
+              isActive('/smpp-system-monitor')
+                ? 'bg-white text-[#2292FC] font-semibold border border-gray-200 shadow-sm'
+                : 'text-[#565869]'
+            }`}
+          >
+            <img
+              src={server}
+              alt="SMPP Icon"
+              className="w-5 h-5 flex-shrink-0"
+              style={getIconStyle(isActive('/smpp-system-monitor'))}
+            />
+            <span className="break-words">SMPP System Monitor</span>
+          </NavLink>
+        </div>
+
+        {/* Settings */}
+        <div className="relative">
+          {isActive('/settings') && (
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[74%] bg-[#2292FC] rounded-r-md z-10" />
+          )}
+          <NavLink
+            to="/settings"
+            onClick={onLinkClick}
+            className={`flex items-center gap-3 px-4 py-2 rounded transition-colors duration-200 ml-4 mr-2 ${
+              isActive('/settings')
+                ? 'bg-white text-[#2292FC] font-semibold border border-gray-200 shadow-sm'
+                : 'text-[#565869]'
+            }`}
+          >
+            <img
+              src={acti}
+              alt="Settings Icon"
+              className="w-5 h-5 flex-shrink-0"
+              style={getIconStyle(isActive('/settings'))}
+            />
+            <span className="break-words">Settings</span>
+          </NavLink>
+        </div>
+
+        {/* Activity Logs */}
+        <div className="relative">
+          {isActive('/activity-log') && (
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[74%] bg-[#2292FC] rounded-r-md z-10" />
+          )}
+          <NavLink
+            to="/activity-log"
+            onClick={onLinkClick}
+            className={`flex items-center gap-3 px-4 py-2 rounded transition-colors duration-200 ml-4 mr-2 ${
+              isActive('/activity-log')
+                ? 'bg-white text-[#2292FC] font-semibold border border-gray-200 shadow-sm'
+                : 'text-[#565869]'
+            }`}
+          >
+            <img
+              src={act}
+              alt="Activity Icon"
+              className="w-5 h-5 flex-shrink-0"
+              style={getIconStyle(isActive('/activity-log'))}
+            />
+            <span className="break-words">Activity Logs</span>
+          </NavLink>
+        </div>
       </nav>
 
       {/* Logout */}
