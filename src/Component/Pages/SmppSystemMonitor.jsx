@@ -9,6 +9,7 @@ import nodejsLogo from '../../assets/images/nodals.png';
 import redisLogo from '../../assets/images/ratin.png'; 
 import bogy from '../../assets/images/babylog.png'
 import { FiArrowUp } from 'react-icons/fi';
+import UBASystemStatus from '../SubPages/BankSystemStatus';
 
 function SmppSystemMonitor() {
   return (
@@ -107,8 +108,9 @@ function SmppSystemMonitor() {
         </p>
       </div>
     </div>
-            </div>
+     </div>
       </div>
+      <UBASystemStatus/>
     </div>
   );
 }
