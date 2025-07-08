@@ -91,13 +91,13 @@ function Sidebar({ onLinkClick }) {
           </NavLink>
         </div>
 
-        {/* Gateway Configuration - Only Modified Section */}
+        {/* Gateway Configuration - Final Corrected Version */}
         <div className="relative">
-          <div className="flex items-center">
-            {/* Toggle icon moved to far left */}
+          <div className="flex items-center pl-4">
+            {/* Toggle icon - positioned to far left */}
             <div 
               onClick={() => setGatewayOpen(!gatewayOpen)}
-              className="flex items-center justify-center w-4 ml-3 cursor-pointer"
+              className="absolute left-1 flex items-center justify-center w-4 cursor-pointer"
             >
               {gatewayOpen ? <FiMinus size={14} /> : <FiPlus size={14} />}
             </div>
@@ -105,12 +105,12 @@ function Sidebar({ onLinkClick }) {
             {/* Gateway item - perfectly aligned with other nav items */}
             <div
               onClick={() => setGatewayOpen(!gatewayOpen)}
-              className="flex items-center gap-3 px-3 py-2 rounded text-[#565869] text-[0.95rem] cursor-pointer"
+              className="flex items-center gap-3 px-4 py-2 rounded text-[#565869] text-[0.95rem] cursor-pointer w-full"
             >
               <img 
                 src={server} 
                 alt="Gateway Icon" 
-                className="w-5 h-5 flex-shrink-0 ml-1" 
+                className="w-5 h-5 flex-shrink-0" 
                 style={getIconStyle(false)}
               />
               <span className="break-words">Gateway Configuration</span>
@@ -162,7 +162,7 @@ function Sidebar({ onLinkClick }) {
             <img
               src={repot}
               alt="Reports Icon"
-              className="w-5 h-5 flex-shrink-0"
+              className="w-6 h-6 flex-shrink-0"
               style={getIconStyle(isActive('/reports'))}
             />
             <span className="break-words">Reports</span>
