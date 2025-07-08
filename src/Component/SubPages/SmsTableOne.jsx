@@ -39,7 +39,7 @@ const SmsTableOne = () => {
       channel: 'SMPP',
       operator: '9Mobile',
       smsCount: 1,
-      dlrStatus: 'Pending',
+      dlrStatus: 'Expired',
       dlrTime: '1970-01-01 01:00:00',
     },
     {
@@ -78,7 +78,7 @@ const SmsTableOne = () => {
       channel: 'API',
       operator: '9Mobile',
       smsCount: 1,
-      dlrStatus: 'Pending',
+      dlrStatus: 'Expired',
       dlrTime: '1970-01-01 01:00:00',
     },
     {
@@ -130,7 +130,7 @@ const SmsTableOne = () => {
       channel: 'API',
       operator: '9Mobile',
       smsCount: 2,
-      dlrStatus: 'Pending',
+      dlrStatus: 'Expired',
       dlrTime: '1970-01-01 01:00:00',
     },
   ];
