@@ -117,7 +117,7 @@ export default function DashboardPage() {
             <p className="text-[#667085]">All general informations appear in the field</p>
           </div>
 
-                  <div
+         <div
           className="relative bg-white shadow rounded-lg border border-none px-3 inline-flex items-center"
           style={{ height: "36px", borderRadius: "8px" }}
         >
