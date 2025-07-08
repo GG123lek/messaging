@@ -12,11 +12,12 @@ const NotificationMultiSettingsBar = () => {
 
   return (
     <div className="w-full">
-      {/* Tab Navigation - 80% width */}
-      <div className="w-[80%]">
-        <div className="flex border border-gray-300 rounded-lg overflow-hidden bg-[#F0F2F5]">
+      {/* Tab Navigation - 90% width with strict width control */}
+      <div className="w-[90%]">
+        <div className="flex border border-gray-300 rounded-lg bg-[#F0F2F5]">
           {tabs.map((tab, index) => {
             const isActive = activeTab === tab;
+            const isLastTab = index === tabs.length - 1;
 
             return (
               <button
@@ -25,22 +26,24 @@ const NotificationMultiSettingsBar = () => {
                 className={`
                   px-3 py-1.5 text-xs font-medium transition-colors duration-200
                   whitespace-nowrap overflow-hidden text-ellipsis
-                  ${index < tabs.length - 1 ? 'border-r border-gray-300' : ''}
+                  ${!isLastTab ? 'border-r border-gray-300' : ''}
                   ${isActive 
                     ? 'bg-[#E4E7EC] text-[#1D2739]' 
                     : 'bg-white text-[#98A2B3] hover:bg-gray-50'
                   }
+                  ${isLastTab ? 'rounded-r-lg' : ''}
                 `}
+                style={{ flex: '1 0 auto' }} // Strict width control
               >
                 {tab}
               </button>
             );
-          })}
+            })}
         </div>
       </div>
 
-      {/* Content area - Full width with matching padding */}
-      <div className="mt-3 bg-white rounded-lg shadow-sm px-6 py-4 w-full"> {/* Full width with px-6 to match top padding */}
+      {/* Full-width content area */}
+      <div className="mt-3 bg-white rounded-lg shadow-sm px-6 py-4 w-full">
         <h2 className="text-sm font-semibold text-gray-900 mb-2">
           {activeTab}
         </h2>
