@@ -29,16 +29,16 @@ function Sidebar({ onLinkClick }) {
   ];
 
   return (
-    <div className="h-full flex flex-col bg-[#F0F0F0] relative">
+    <div className="h-full flex flex-col bg-[#F0F0F0] relative max-w-full overflow-x-hidden">
       {/* Logo */}
-      <div className="flex items-center gap-2 mb-4 px-4 pt-4 whitespace-nowrap">
-        <img src={Logo} alt="Logo" className="w-6 h-6" />
-        <span className="text-lg font-semibold">Messaging Platform</span>
+      <div className="flex items-center gap-2 mb-4 px-4 pt-4 whitespace-nowrap overflow-hidden">
+        <img src={Logo} alt="Logo" className="w-6 h-6 flex-shrink-0" />
+        <span className="text-lg font-semibold truncate">Messaging Platform</span>
       </div>
 
       <hr className="w-full border-t border-gray-300 mb-4" />
 
-      <div className="text-xs text-gray-500 uppercase tracking-widest mb-2 px-4">
+      <div className="text-xs text-gray-500 uppercase tracking-widest mb-2 px-4 overflow-hidden">
         Main Menu
       </div>
 

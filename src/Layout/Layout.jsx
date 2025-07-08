@@ -29,8 +29,8 @@ function Layout() {
           </div>
         </div>
 
-        {/* Main content - now scrolls naturally with browser scroll */}
-        <main className="flex-1 w-full">
+        {/* Main content - now has proper padding and spacing */}
+        <main className="flex-1 w-full  pb-6">
           <Outlet />
         </main>
       </div>
