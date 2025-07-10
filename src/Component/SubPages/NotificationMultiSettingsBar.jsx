@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NotificationRetryThrottlingForm from './NotificationRetryThrottlingForm';
+import DefaultRoutingTemplatesForm from './DefaultRoutingTemplateForm';
 
 const NotificationMultiSettingsBar = () => {
   const [activeTab, setActiveTab] = useState('Notification Retry & Throttling Settings');
@@ -16,9 +17,11 @@ const NotificationMultiSettingsBar = () => {
       case 'Notification Retry & Throttling Settings':
         return <NotificationRetryThrottlingForm />;
       // Add other cases for other tabs when you implement them
+      case 'Default Routing Logic Templates':
+      return <DefaultRoutingTemplatesForm />;
       default:
         return (
-          <div className="border-t border-gray-200 pt-3">
+          <div className="border-t border-gray-200  pt-3">
             <p className="text-xs text-gray-600">
               Configuration options for {activeTab.toLowerCase()}
             </p>
@@ -31,7 +34,7 @@ const NotificationMultiSettingsBar = () => {
     <div className="w-full">
       {/* Tab Navigation - 90% width with strict width control */}
       <div className="w-[90%]">
-        <div className="flex border border-gray-300 rounded-lg bg-[#F0F2F5]">
+        <div className="flex border border-gray-300  rounded-lg bg-[#F0F2F5]">
           {tabs.map((tab, index) => {
             const isActive = activeTab === tab;
             const isLastTab = index === tabs.length - 1;
@@ -41,7 +44,7 @@ const NotificationMultiSettingsBar = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`
-                  px-3 py-1.5 text-xs font-medium transition-colors duration-200
+                  px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer duration-200
                   whitespace-nowrap overflow-hidden text-ellipsis
                   ${!isLastTab ? 'border-r border-gray-300' : ''}
                   ${isActive 

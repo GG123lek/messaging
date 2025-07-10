@@ -12,7 +12,7 @@ const NotificationRetryThrottlingForm = () => {
     <>
       <div className="space-y-0">
         {/* Header */}
-        <h2 className="text-sm font-semibold text-gray-900 mb-2">
+        <h2 className="text-sm font-semibold text-[#667085] mb-2">
           Manage and edit the notification retry & throttling settings
         </h2>
         <div className="border-t border-gray-200 pt-3"></div>
@@ -22,7 +22,7 @@ const NotificationRetryThrottlingForm = () => {
           <div className="flex items-center pb-2">
             <div className="w-48">
               <p className="text-sm font-medium text-gray-900">Retry Attempts (Per Channel)</p>
-              <p className="text-[10px] text-gray-600 mt-1">Not retries before fallback or follow</p>
+              <p className="text-[10px] text-[#667085] mt-1">Not retries before fallback or follow</p>
             </div>
             <input 
               type="number" 
@@ -37,7 +37,7 @@ const NotificationRetryThrottlingForm = () => {
           <div className="flex items-center pb-2">
             <div className="w-48">
               <p className="text-sm font-medium text-gray-900">Retry Delay (Seconds)</p>
-              <p className="text-[10px] text-gray-600 mt-1">Delay between retry attempts</p>
+              <p className="text-[10px] text-[#667085] mt-1">Delay between retry attempts</p>
             </div>
             <input 
               type="number" 
@@ -52,7 +52,7 @@ const NotificationRetryThrottlingForm = () => {
           <div className="flex items-center pb-2">
             <div className="w-48">
               <p className="text-sm font-medium text-gray-900">Throttling Limit per Client</p>
-              <p className="text-[10px] text-gray-600 mt-1">Not allowed API calls per minute</p>
+              <p className="text-[10px] text-[#667085] mt-1">Not allowed API calls per minute</p>
             </div>
             <div className="relative w-80">
               <input 
