@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import NotificationRetryThrottlingForm from './NotificationRetryThrottlingForm';
-import DefaultRoutingTemplatesForm from './DefaultRoutingTemplateForm';
+import NotificationRetryThrottlingForm from '../SubPages/NotificationRetryThrottlingForm';
+import DefaultRoutingTemplatesForm from '../SubPages/DefaultRoutingTemplateForm';
+import TimezoneSchedulingForm from '../SubPages/TimeZoneSchedulingForm';
+import MessageRetentionForm from '../SubPages/MessageRetentionForm';
 
 const NotificationMultiSettingsBar = () => {
   const [activeTab, setActiveTab] = useState('Notification Retry & Throttling Settings');
@@ -19,6 +21,10 @@ const NotificationMultiSettingsBar = () => {
       // Add other cases for other tabs when you implement them
       case 'Default Routing Logic Templates':
       return <DefaultRoutingTemplatesForm />;
+      case 'Timezone & Scheduling Configurations':
+        return <TimezoneSchedulingForm />;
+      case 'Message Retention Settings':
+        return <MessageRetentionForm />;
       default:
         return (
           <div className="border-t border-gray-200  pt-3">
