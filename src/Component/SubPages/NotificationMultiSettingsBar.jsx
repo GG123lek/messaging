@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NotificationRetryThrottlingForm from './NotificationRetryThrottlingForm';
 
 const NotificationMultiSettingsBar = () => {
   const [activeTab, setActiveTab] = useState('Notification Retry & Throttling Settings');
@@ -9,6 +10,22 @@ const NotificationMultiSettingsBar = () => {
     'Timezone & Scheduling Configurations',
     'Message Retention Settings'
   ];
+
+  const renderActiveTabContent = () => {
+    switch (activeTab) {
+      case 'Notification Retry & Throttling Settings':
+        return <NotificationRetryThrottlingForm />;
+      // Add other cases for other tabs when you implement them
+      default:
+        return (
+          <div className="border-t border-gray-200 pt-3">
+            <p className="text-xs text-gray-600">
+              Configuration options for {activeTab.toLowerCase()}
+            </p>
+          </div>
+        );
+    }
+  };
 
   return (
     <div className="w-full">
@@ -47,11 +64,7 @@ const NotificationMultiSettingsBar = () => {
         <h2 className="text-sm font-semibold text-gray-900 mb-2">
           {activeTab}
         </h2>
-        <div className="border-t border-gray-200 pt-3">
-          <p className="text-xs text-gray-600">
-            Configuration options for {activeTab.toLowerCase()}
-          </p>
-        </div>
+        {renderActiveTabContent()}
       </div>
     </div>
   );
