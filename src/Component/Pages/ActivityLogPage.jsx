@@ -46,7 +46,9 @@ function ActivityLogPage() {
             </p>
           </div>
           
-          <button className="flex items-center gap-2 bg-white text-[#344054] text-xs font-semibold py-2 px-3 rounded-lg border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors">
+          <button className="flex items-center gap-2 bg-white text-[#344054] 
+          text-xs font-semibold py-2 px-3 rounded-lg border border-gray-200 
+          shadow-sm hover:bg-gray-50 cursor-pointer transition-colors">
             <img src={pdfIcon} alt="PDF Icon" className="w-3 h-3" />
             Export PDF
           </button>

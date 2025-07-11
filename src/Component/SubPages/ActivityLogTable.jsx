@@ -138,32 +138,31 @@ const ActivityLogTable = () => {
                     </button>
                     
                     {/* Date Range Picker */}
-                    <div className="relative bg-white shadow rounded-lg border border-gray-300 px-4 inline-flex items-center h-10">
-                        <button
-                            onClick={() => setShowCalendar(!showCalendar)}
-                            className="flex items-center gap-2 text-sm text-black whitespace-nowrap text-[#101828] font-medium justify-center h-full w-full"
-                        >
-                            <span className="text-[#344054]">Showing:</span>
-                            <img src={calest} alt="Calendar" className="w-4 h-4 text-gray-500" />
-                            <span>
-                                {format(range[0].startDate, "MMM d, yyyy")} –{" "}
-                                {format(range[0].endDate, "MMM d, yyyy")}
-                            </span>
-                        </button>
+                 <div className="relative bg-white shadow rounded-lg border border-gray-300 px-3 inline-flex items-center h-9">
+        <button
+            onClick={() => setShowCalendar(!showCalendar)}
+            className="flex items-center gap-1.5 text-xs text-black whitespace-nowrap text-[#101828] font-medium justify-center h-full w-full"
+        >
+            <span className="text-[#344054]">Showing:</span>
+            <img src={calest} alt="Calendar" className="w-3.5 h-3.5 text-gray-500" />
+            <span>
+            {format(range[0].startDate, "MMM d, yyyy")} – {format(range[0].endDate, "MMM d, yyyy")}
+            </span>
+        </button>
 
-                        {showCalendar && (
-                            <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg border border-gray-200">
-                                <DateRange
-                                    editableDateInputs={true}
-                                    onChange={(item) => setRange([item.selection])}
-                                    moveRangeOnFirstSelection={false}
-                                    ranges={range}
-                                    rangeColors={["#4F46E5"]}
-                                    className="rounded-md"
-                                />
-                            </div>
-                        )}
-                    </div>
+        {showCalendar && (
+            <div className="absolute z-20 right-0 mt-2 bg-white rounded-md shadow-lg border border-gray-200">
+            <DateRange
+                editableDateInputs={true}
+                onChange={(item) => setRange([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={range}
+                rangeColors={["#4F46E5"]}
+                className="rounded-md"
+            />
+            </div>
+        )}
+                 </div>
                 </div>
             </div>
 
@@ -204,10 +203,10 @@ const ActivityLogTable = () => {
                                 </td>
                                 <td className="px-6 py-2 whitespace-nowrap">
                                     <span className={`text-sm font-medium ${
-                                        log.actionType === 'Create' ? 'text-green-600' :
-                                        log.actionType === 'Edit' ? 'text-blue-600' :
-                                        log.actionType === 'Delete' ? 'text-red-600' :
-                                        log.actionType === 'View' ? 'text-purple-600' : 'text-gray-600'
+                                        log.actionType === 'Create' ? 'text-[#667085]' :
+                                        log.actionType === 'Edit' ? 'text-[#667085]' :
+                                        log.actionType === 'Delete' ? 'text-[#667085]' :
+                                        log.actionType === 'View' ? 'text-[#667085]' : 'text-gray-600'
                                     }`}>
                                         {log.actionType}
                                     </span>
